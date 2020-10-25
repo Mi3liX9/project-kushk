@@ -1,15 +1,15 @@
 import React from "react";
-import { useRouter } from "next/router";
+import { Site } from "site";
 import { useTheme } from "src/hooks/useTheme";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import HeaderTitle from "./header-title";
 import Icon from "./icon";
 import SocialIcon from "./social-icon";
+import Tab from "./tab";
+
 const Header = () => {
   const [theme, toggleTheme] = useTheme();
-  const router = useRouter();
-  const path = router.pathname;
-
+  const tabs = Site.tabs;
   return (
     <Container>
       <Top>
@@ -23,12 +23,9 @@ const Header = () => {
         />
       </Top>
       <Tabs>
-        <Tab isHere={path == "/"}>المدونة التقنية</Tab>
-        <Tab>قائمة الأنمي</Tab>
-        <Tab>اكسبريس</Tab>
-        <Tab>مشتريات</Tab>
-        <Tab>الأسئلة الشائعة</Tab>
-        <Tab>من أنا</Tab>
+        {tabs.map((tab) => (
+          <Tab href={tab.path}>{tab.title}</Tab>
+        ))}
       </Tabs>
     </Container>
   );
@@ -63,25 +60,6 @@ const Tabs = styled.div`
   overflow-y: hidden;
   white-space: nowrap;
   height: 40px;
-`;
-
-const Tab = styled.a<{ isHere?: boolean }>`
-  --tab-color: var(--text-color-primary);
-
-  ${({ isHere }) =>
-    isHere
-      ? css`
-          border-bottom: 3px solid var(--tab-color);
-          font-weight: bold;
-        `
-      : null}
-  text-decoration: none;
-  padding: 5px;
-  color: var(--tab-color);
-  :hover {
-    --tab-color: var(--color-primary);
-    border-bottom: 2px solid var(--tab-color);
-  }
 `;
 
 const ToggleTheme = styled(Icon)`

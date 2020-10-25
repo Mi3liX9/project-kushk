@@ -6,6 +6,7 @@ import Image from "./post-image";
 import Row from "./row";
 import Tags from "./tag";
 import { PostProps } from "src/interfaces/post";
+import { Site } from "site";
 
 interface Props extends PostProps {
   place?: "inside" | "outside";
@@ -22,7 +23,7 @@ const PostPreview: React.FC<Props> = ({
   date = typeof date === "string" ? new Date(date + " utc +3") : date;
   const newDate = useDateFormat(date);
   const timeDifference = new Date().getDate() - date.getDate();
-
+  image = image && image.length > 4 ? image : Site.mainIcon;
   const titleComponent =
     place === "outside" ? (
       <p className="title">{title}</p>
@@ -32,7 +33,7 @@ const PostPreview: React.FC<Props> = ({
 
   return (
     <MyContainer place={place} slug={slug}>
-      <Image src={image ?? "/static/main-icon.png"} />
+      <Image src={image} />
       <Details className="details">
         {titleComponent}
         <Row className="row">

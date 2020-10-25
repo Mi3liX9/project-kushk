@@ -1,3 +1,4 @@
+import { Site } from "site";
 import styled from "styled-components";
 
 interface Props {
@@ -7,12 +8,8 @@ interface Props {
 
 const HeaderTitle: React.FC<Props> = ({ img, title }) => (
   <TitleContainer>
-    <SiteIcon
-      id="site-icon"
-      src={img ?? "/static/main-icon.png"}
-      draggable="false"
-    />
-    <Title id="site-title">{title ?? "مايتي بلوق"}</Title>
+    <SiteIcon id="site-icon" src={img ?? Site.mainIcon} draggable="false" />
+    <Title id="site-title">{title ?? Site.siteName}</Title>
   </TitleContainer>
 );
 
@@ -31,7 +28,7 @@ const Title = styled.p`
   white-space: nowrap;
   margin: 0;
 
-  @media (max-width: 280px) {
+  @media (max-width: 320px) {
     display: none;
   }
 `;
