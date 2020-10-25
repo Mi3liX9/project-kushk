@@ -6,6 +6,7 @@ import Header from "src/components/header";
 import Footer from "src/components/footer";
 
 import "../styles/globals.css";
+import { Site } from "site";
 
 const darkThemeFunc = `
               (function() {
@@ -44,6 +45,15 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             __html: darkThemeFunc,
           }}
         />
+        <title>{Site.siteName}</title>
+        {Site.meta.map((meta) => (
+          <meta
+            name={meta.name}
+            property={meta.property}
+            content={meta.content}
+            key={meta.key}
+          />
+        ))}
       </Head>
       <Container>
         <Header />

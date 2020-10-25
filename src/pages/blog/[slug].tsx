@@ -7,21 +7,66 @@ import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
 import Post from "src/components/post";
+import Head from "next/head";
+import { Site } from "site";
+import { useRouter } from "next/router";
 
 const root = process.cwd();
 
+const metatags = 
+
 export default function BlogPost({ mdxSource, frontMatter }: any) {
+  const router = useRouter();
   const content = hydrate(mdxSource);
   return (
-    <Post
-      title={frontMatter.title}
-      date={frontMatter.date}
-      slug={frontMatter.slug}
-      tags={frontMatter.tags}
-      image={frontMatter.image}
-    >
-      {content}
-    </Post>
+    <>
+      <Head>
+        <title>
+          {frontMatter.title} | {Site.siteName}
+        </title>
+        <meta name="title" content={frontMatter.title} />
+        <meta name="description" content={frontMatter.description} />
+        {/* Open Graph / Facebook  */}
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:url"
+          content={"https://" + window.location.hostname}
+        />
+        <meta property="og:title" content={frontMatter.title} />
+        {frontMatter.description && (
+          <meta property="og:description" content={frontMatter.description} />
+        )}
+        <meta
+          property="og:image"
+          content={"https://" + window.location.hostname + frontMatter.image}
+        />
+        {/* Twitter  */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content={"https://" + window.location.hostname}
+        />
+        <meta property="twitter:title" content={frontMatter.title} />
+        <meta
+          property="twitter:description"
+          content={frontMatter.description}
+        />
+        <meta
+          property="twitter:image"
+          content={"https://" + window.location.hostname + frontMatter.image}
+        />
+        {/* <meta name="keywords" /> */}
+      </Head>
+      <Post
+        title={frontMatter.title}
+        date={frontMatter.date}
+        slug={frontMatter.slug}
+        tags={frontMatter.tags}
+        image={frontMatter.image}
+      >
+        {content}
+      </Post>
+    </>
   );
 }
 export async function getStaticPaths() {

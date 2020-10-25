@@ -1,8 +1,15 @@
+export interface Metatags {
+  name?: string;
+  property?: string;
+  content?: string;
+  key?: string;
+}
+
 export class Site {
   static siteName = "مايتي بلوق";
   static mainIcon = "/icons/mi3li.png";
 
-  static meta = [];
+  static meta: Metatags[] = [{ name: "description", content: "", key: "" }];
 
   static tabs = [
     { title: "المدونة التقنية", path: "/blog" },
