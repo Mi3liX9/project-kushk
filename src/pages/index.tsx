@@ -1,23 +1,48 @@
+import fs from "fs";
+import path from "path";
 import React from "react";
 import styled from "styled-components";
-import { useDateFormat } from "src/hooks/useTimeFormat";
-import PostTitle from "src/components/post-title";
+import PostPreview from "src/components/post-preview";
+import { InferGetStaticPropsType } from "next";
+import matter from "gray-matter";
 
-export default function Home() {
-  const date = useDateFormat();
+const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  postData,
+}) => {
   return (
     <Container>
       <StyledMain>
-        <PostTitle
-          title="أهلًا مايتي بلوق!"
-          date={new Date(2020, 9, 18, 16, 35)}
-          tags={["مرحبا"]}
-          slug="/"
-        />
+        {postData.map((post) => (
+          <PostPreview
+            place="outside"
+            title={post.frontMatter.title}
+            image={post.frontMatter.image}
+            date={post.frontMatter.date}
+            tags={post.frontMatter.tags}
+            slug={post.slug}
+            key={post.slug}
+          />
+        ))}
       </StyledMain>
-      <StyledSection>section</StyledSection>
+      <StyledSection></StyledSection>
     </Container>
   );
+};
+
+export default Home;
+const root = process.cwd();
+
+export async function getStaticProps() {
+  const contentRoot = path.join(root, "posts");
+  const postData = fs.readdirSync(contentRoot).map((p) => {
+    const content = fs.readFileSync(path.join(contentRoot, p), "utf8");
+    return {
+      slug: p.replace(/\.mdx/, ""),
+      content,
+      frontMatter: matter(content).data,
+    };
+  });
+  return { props: { postData } };
 }
 
 const Container = styled.div`

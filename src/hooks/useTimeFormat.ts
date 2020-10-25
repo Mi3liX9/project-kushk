@@ -1,9 +1,8 @@
-const defaultOptions = {
+const defaultOptions: Intl.DateTimeFormatOptions = {
   weekday: "long",
   day: "numeric",
   year: "numeric",
   month: "long",
-  hour12: true,
   hour: "numeric",
   minute: "numeric",
 };
