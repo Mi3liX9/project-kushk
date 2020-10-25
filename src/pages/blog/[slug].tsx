@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 
 const root = process.cwd();
 
-const metatags = 
+// const metatags =
 
 export default function BlogPost({ mdxSource, frontMatter }: any) {
   const router = useRouter();
@@ -28,33 +28,21 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
         <meta name="description" content={frontMatter.description} />
         {/* Open Graph / Facebook  */}
         <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={"https://" + window.location.hostname}
-        />
+        <meta property="og:url" content={Site.url} />
         <meta property="og:title" content={frontMatter.title} />
         {frontMatter.description && (
           <meta property="og:description" content={frontMatter.description} />
         )}
-        <meta
-          property="og:image"
-          content={"https://" + window.location.hostname + frontMatter.image}
-        />
+        <meta property="og:image" content={Site.url + frontMatter.image} />
         {/* Twitter  */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={"https://" + window.location.hostname}
-        />
+        <meta property="twitter:url" content={Site.url} />
         <meta property="twitter:title" content={frontMatter.title} />
         <meta
           property="twitter:description"
           content={frontMatter.description}
         />
-        <meta
-          property="twitter:image"
-          content={"https://" + window.location.hostname + frontMatter.image}
-        />
+        <meta property="twitter:image" content={Site.url + frontMatter.image} />
         {/* <meta name="keywords" /> */}
       </Head>
       <Post

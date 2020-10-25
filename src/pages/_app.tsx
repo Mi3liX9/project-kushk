@@ -46,6 +46,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           }}
         />
         <title>{Site.siteName}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href={Site.mainIcon} />
         {Site.meta.map((meta) => (
           <meta
             name={meta.name}

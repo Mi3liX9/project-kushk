@@ -1,3 +1,5 @@
+import { env } from "process";
+
 export interface Metatags {
   name?: string;
   property?: string;
@@ -10,6 +12,11 @@ export class Site {
   static mainIcon = "/icons/mi3li.png";
 
   static meta: Metatags[] = [{ name: "description", content: "", key: "" }];
+
+  static url =
+    process.env.NODE_ENV === "development"
+      ? "localhost:3000"
+      : "https://mi3lix9.app/";
 
   static tabs = [
     { title: "المدونة التقنية", path: "/blog" },
