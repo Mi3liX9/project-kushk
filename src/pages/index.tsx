@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { useDateFormat } from "src/hooks/useTimeFormat";
+import PostTitle from "src/components/post-title";
 
 export default function Home() {
   const date = useDateFormat();
   return (
     <Container>
       <StyledMain>
-        <div className="article-container">
-          <img src="/static/main-icon.png" />
-          <div className="article-button">
-            <p className="title">عنوان المقالة</p>
-            <p className="date">نشرت يوم {date}</p>
-          </div>
-        </div>
+        <PostTitle
+          title="أهلًا مايتي بلوق!"
+          date={new Date(2020, 9, 18, 16, 35)}
+          tags={["مرحبا"]}
+          slug="/"
+        />
       </StyledMain>
       <StyledSection>section</StyledSection>
     </Container>
@@ -34,50 +34,11 @@ const StyledMain = styled.main`
   order: 2;
   padding: 15px;
   line-height: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   @media (min-width: 820px) {
     order: 1;
-  }
-
-  .article-container {
-    display: flex;
-    align-items: center;
-    height: 65px;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    gap: 10px;
-    user-select: none;
-    cursor: pointer;
-    :hover {
-      background: var(--background-icon);
-    }
-
-    img {
-      margin: 0;
-      object-fit: contain;
-      height: 100%;
-    }
-  }
-
-  .article-button {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    /* padding: 10px 0; */
-    /* gap: 5px; */
-
-    p {
-      margin: 0;
-      line-height: 2;
-    }
-
-    .title {
-      width: 100%;
-    }
-    .date {
-      font-size: 0.8rem;
-    }
   }
 `;
 
