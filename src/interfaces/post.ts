@@ -1,7 +1,7 @@
 export interface PostProps {
   title: string;
   image?: string;
-  date: Date;
+  date: Date | string;
   tags?: string[];
   slug: string;
 }
