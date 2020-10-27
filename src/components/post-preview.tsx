@@ -80,7 +80,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   gap: 15px;
   border-radius: 15px;
 

@@ -105,7 +105,7 @@ const Posts = styled.main`
   flex-grow: 2;
   flex-basis: 500px;
   order: 2;
-  padding: 15px;
+  padding: 15px 5px;
   line-height: 2;
   display: flex;
   flex-direction: column;
