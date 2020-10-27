@@ -18,10 +18,23 @@ a {
   box-sizing: border-box;
   transition: all 150ms linear;
   color: var(--text-color-primary);
+  font-family: "Tajawal";
 }
 
 *::selection {
   background: var(--highlight-color);
+}
+
+input {
+  height: 40px;
+  width: 150px;
+  border: 0;
+  background: var(--input-backround);
+  padding: 10px;
+}
+
+input::placeholder {
+  color: var(--placeholder-color);
 }
 
 :root {
@@ -29,9 +42,10 @@ a {
   --background-primary: #f2f2f2;
   --background-secondary: white;
   --background-icon: rgba(0, 0, 0, 0.1);
-
+  --input-backround: #f2f2f2;
   /* text */
   --text-color-primary: #202020;
+  --placeholder-color: #909090;
 
   /* main colors */
   --color-primary: #2d9cdb;
@@ -45,9 +59,11 @@ a {
   --background-secondary: #202020;
   --background-article: #303030;
   --background-icon: rgba(255, 255, 255, 0.1);
+  --input-backround: #303030;
 
   --highlight-color: rgba(86, 204, 242, 0.2);
 
   /* text */
   --text-color-primary: white;
+  --placeholder-color: rgba(255, 255, 255, 0.6);
 }

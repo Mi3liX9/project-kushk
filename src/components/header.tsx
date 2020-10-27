@@ -26,11 +26,15 @@ const Header = () => {
           src={theme == "dark" ? "/icons/moon.svg" : "/icons/sun.svg"}
         />
       </Top>
-      <Tabs>
-        {tabs.map((tab) => (
-          <Tab href={tab.path}>{tab.title}</Tab>
-        ))}
-      </Tabs>
+      {tabs.length > 1 ? (
+        <Tabs>
+          {tabs.map((tab) => (
+            <Tab href={tab.path} key={tab.title}>
+              {tab.title}
+            </Tab>
+          ))}
+        </Tabs>
+      ) : null}
     </Container>
   );
 };

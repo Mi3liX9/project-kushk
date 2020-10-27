@@ -24,7 +24,7 @@ const Post: React.FC<PostProps> = ({
         />
         {children}
       </Article>
-      <Section></Section>
+      {/* <Section></Section> */}
     </Container>
   );
 };

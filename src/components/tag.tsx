@@ -21,7 +21,7 @@ const TagTitle = styled.div`
   line-height: 1;
   font-size: 0.8rem;
   border: solid var(--color-primary);
-  padding: 2.5px;
+  padding: 3px 5px;
   border-radius: 5px;
   user-select: none;
 `;

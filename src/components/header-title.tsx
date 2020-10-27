@@ -1,3 +1,5 @@
+import Link from "next/link";
+import React from "react";
 import { Site } from "site";
 import styled from "styled-components";
 
@@ -7,10 +9,12 @@ interface Props {
 }
 
 const HeaderTitle: React.FC<Props> = ({ img, title }) => (
-  <TitleContainer>
-    <SiteIcon id="site-icon" src={img ?? Site.mainIcon} draggable="false" />
-    <Title id="site-title">{title ?? Site.siteName}</Title>
-  </TitleContainer>
+  <Link href="/">
+    <TitleContainer>
+      <SiteIcon id="site-icon" src={img ?? Site.mainIcon} draggable="false" />
+      <Title id="site-title">{title ?? Site.siteName}</Title>
+    </TitleContainer>
+  </Link>
 );
 
 export default HeaderTitle;
@@ -20,6 +24,7 @@ const TitleContainer = styled.div`
   align-items: center;
   display: flex;
   gap: 15px;
+  cursor: pointer;
 `;
 
 const Title = styled.p`

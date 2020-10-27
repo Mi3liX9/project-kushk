@@ -77,6 +77,6 @@ const Container = styled.div`
   min-height: 100vh;
 
   @media (min-width: 1024px) and (orientation: landscape) {
-    padding: 5px 15%;
+    padding: 5px 20%;
   }
 `;

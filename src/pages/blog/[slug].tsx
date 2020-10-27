@@ -1,14 +1,10 @@
 import React from "react";
 // @ts-ignore
-import renderToString from "next-mdx-remote/render-to-string";
-// @ts-ignore
 import hydrate from "next-mdx-remote/hydrate";
-import matter from "gray-matter";
-import fs from "fs";
-import path from "path";
 import Post from "src/components/post";
 import Head from "next/head";
 import { Metatags, Site } from "site";
+import { BlogService } from "src/blog/blog.service";
 
 const root = process.cwd();
 
@@ -63,20 +59,17 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
     </>
   );
 }
+
+const blogService = new BlogService();
 export async function getStaticPaths() {
   return {
     fallback: false,
-    paths: fs
-      .readdirSync(path.join(root, "posts"))
-      .map((p) => ({ params: { slug: p.replace(/\.mdx/, "") } })),
+    paths: await blogService.getPostsSlugs(),
   };
 }
 export async function getStaticProps({ params }: any) {
-  const source = fs.readFileSync(
-    path.join(root, "posts", `${params.slug}.mdx`),
-    "utf8"
+  const { frontMatter, mdxSource } = await blogService.getPostBySlog(
+    params.slug
   );
-  const { data, content } = matter(source);
-  const mdxSource = await renderToString(content);
-  return { props: { mdxSource, frontMatter: data } };
+  return { props: { mdxSource, frontMatter } };
 }

@@ -1,7 +1,6 @@
 import { Site } from "site";
 import styled from "styled-components";
 import Icon from "./icon";
-import Tab from "./tab";
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
