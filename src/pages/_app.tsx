@@ -1,5 +1,4 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
-import { MDXProvider } from "@mdx-js/react";
 import Head from "next/head";
 import styled from "styled-components";
 import Header from "src/components/header";
@@ -7,6 +6,7 @@ import Footer from "src/components/footer";
 
 import "../styles/globals.css";
 import { Site } from "site";
+import React from "react";
 
 const darkThemeFunc = `
               (function() {
@@ -57,6 +57,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           />
         ))}
       </Head>
+
       <Container>
         <Header />
         <Component {...pageProps} />

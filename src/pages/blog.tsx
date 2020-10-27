@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PostPreview from "src/components/post-preview";
 import { InferGetStaticPropsType } from "next";
@@ -9,10 +9,23 @@ import matter from "gray-matter";
 const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   postData,
 }) => {
+  const [search, setSearch] = useState("");
+  const [posts, setPosts] = useState(postData.concat());
+
+  useEffect(() => {
+    const filtedPosts = postData.filter((post) => {
+      const words = search.split(" ");
+      const title = post.frontMatter.title as string;
+      return words.every((word) => title.includes(word));
+    });
+    console.log({ search, posts });
+    setPosts(filtedPosts);
+  }, [search]);
+
   return (
     <Container>
-      <StyledMain>
-        {postData.map((post) => (
+      <Posts>
+        {posts.map((post) => (
           <PostPreview
             place="outside"
             title={post.frontMatter.title}
@@ -23,8 +36,15 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             key={post.slug}
           />
         ))}
-      </StyledMain>
-      <StyledSection></StyledSection>
+      </Posts>
+      <StyledSection>
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="ابحث عن أي مقال"
+        />
+      </StyledSection>
     </Container>
   );
 };
@@ -51,7 +71,7 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const StyledMain = styled.main`
+const Posts = styled.main`
   background: var(--background-secondary);
   border-radius: 5px;
   flex-grow: 2;
@@ -62,6 +82,7 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-height: 80vh;
   @media (min-width: 820px) {
     order: 1;
   }

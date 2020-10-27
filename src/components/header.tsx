@@ -4,7 +4,6 @@ import { useTheme } from "src/hooks/useTheme";
 import styled from "styled-components";
 import HeaderTitle from "./header-title";
 import Icon from "./icon";
-import SocialIcon from "./social-icon";
 import Tab from "./tab";
 
 const Header = () => {
@@ -14,9 +13,14 @@ const Header = () => {
     <Container>
       <Top>
         <HeaderTitle />
+        <a
+          href={Site.socialMedia[0].url}
+          target="_blank"
+          style={{ height: 45 }}
+        >
+          <MyIcon src={Site.socialMedia[0].image} />
+        </a>
 
-        <SocialIcon icon="telegram" />
-        <SocialIcon icon="instagram" />
         <ToggleTheme
           onClick={toggleTheme as any}
           src={theme == "dark" ? "/icons/moon.svg" : "/icons/sun.svg"}
@@ -65,5 +69,14 @@ const Tabs = styled.div`
 const ToggleTheme = styled(Icon)`
   :hover {
     transform: rotate(360deg);
+  }
+`;
+
+const MyIcon = styled(Icon)`
+  border-radius: 0px;
+  transition: all 50ms linear;
+  :hover {
+    background: transparent;
+    transform: scale(1.15);
   }
 `;

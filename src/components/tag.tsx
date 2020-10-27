@@ -23,6 +23,7 @@ const TagTitle = styled.div`
   border: solid var(--color-primary);
   padding: 2.5px;
   border-radius: 5px;
+  user-select: none;
 `;
 
 const NewTagTitle = styled(TagTitle)`

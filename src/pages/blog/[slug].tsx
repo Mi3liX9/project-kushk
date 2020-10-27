@@ -8,42 +8,48 @@ import fs from "fs";
 import path from "path";
 import Post from "src/components/post";
 import Head from "next/head";
-import { Site } from "site";
-import { useRouter } from "next/router";
+import { Metatags, Site } from "site";
 
 const root = process.cwd();
 
-// const metatags =
-
 export default function BlogPost({ mdxSource, frontMatter }: any) {
-  const router = useRouter();
   const content = hydrate(mdxSource);
+  const metatags: Metatags[] = [
+    // GENERAL
+    { name: "title", content: frontMatter.title },
+    { name: "description", content: frontMatter.excerpt },
+
+    // Open Graph / Facebook
+    { name: "og:type", content: "article" },
+    { name: "og:url", content: Site.url },
+    { name: "og:title", content: frontMatter.title },
+    { name: "og:description", content: frontMatter.excerpt },
+    { name: "og:image", content: Site.url + frontMatter.image },
+
+    // Twitter
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:url", content: Site.url },
+    { name: "twitter:title", content: frontMatter.title },
+    { name: "twitter:description", content: frontMatter.excerpt },
+    { name: "twitter:image", content: Site.url + frontMatter.image },
+  ];
   return (
     <>
       <Head>
         <title>
           {frontMatter.title} | {Site.siteName}
         </title>
-        <meta name="title" content={frontMatter.title} />
-        <meta name="description" content={frontMatter.description} />
-        {/* Open Graph / Facebook  */}
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={Site.url} />
-        <meta property="og:title" content={frontMatter.title} />
-        {frontMatter.description && (
-          <meta property="og:description" content={frontMatter.description} />
+        {metatags.map(
+          (meta) =>
+            (meta.content || meta.property) && (
+              <meta
+                name={meta.name}
+                content={meta.content}
+                property={meta.property}
+                key={meta.key}
+              />
+            )
         )}
-        <meta property="og:image" content={Site.url + frontMatter.image} />
-        {/* Twitter  */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={Site.url} />
-        <meta property="twitter:title" content={frontMatter.title} />
-        <meta
-          property="twitter:description"
-          content={frontMatter.description}
-        />
-        <meta property="twitter:image" content={Site.url + frontMatter.image} />
-        {/* <meta name="keywords" /> */}
       </Head>
       <Post
         title={frontMatter.title}

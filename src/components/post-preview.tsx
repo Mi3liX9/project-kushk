@@ -33,7 +33,7 @@ const PostPreview: React.FC<Props> = ({
 
   return (
     <MyContainer place={place} slug={slug}>
-      <Image src={image} />
+      <Image src={image} draggable="false" />
       <Details className="details">
         {titleComponent}
         <Row className="row">
@@ -94,7 +94,9 @@ const Container = styled.div`
   .date {
     font-size: 0.8rem;
   }
-
+  img {
+    ${userSelectNone}
+  }
   @media (max-width: 360px) {
     justify-content: center;
     flex-direction: column;
