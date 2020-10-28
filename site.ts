@@ -12,9 +12,7 @@ export class Site {
   static meta: Metatags[] = [{ name: "description", content: "", key: "" }];
 
   static url =
-    process.env.NODE_ENV === "development"
-      ? "localhost:3000"
-      : "https://mi3lix9.app/";
+    process.env.NODE_ENV === "development" ? "localhost:3000" : process.env.URL;
 
   static tabs = [
     { title: "المدونة التقنية", path: "/blog" },

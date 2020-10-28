@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PostPreview from "src/components/post-preview";
@@ -15,9 +13,6 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const [posts, setPosts] = useState(postData.concat());
 
   const tags = new Set<string>();
-  tags.add("سامسونج");
-  tags.add("الدراسة");
-  tags.add("ويندوز");
   postData.forEach((post) => {
     post.tags.forEach((tag) => tags.add(tag));
   });
