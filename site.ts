@@ -8,11 +8,11 @@ export interface Metatags {
 export class Site {
   static siteName = "مايتي بلوق";
   static mainIcon = "/icons/mi3li.png";
-
-  static meta: Metatags[] = [{ name: "description", content: "", key: "" }];
-
+  static description = "MiGHTY 3li's new website";
   static url =
-    process.env.NODE_ENV === "development" ? "localhost:3000" : process.env.URL;
+    process.env.NODE_ENV === "development"
+      ? "localhost:3000"
+      : process.env.URL ?? "https://mi3li-blog.vercel.app/";
 
   static tabs = [
     { title: "المدونة التقنية", path: "/blog" },
@@ -39,4 +39,20 @@ export class Site {
       },
     ].concat();
   }
+  static meta: Metatags[] = [
+    { name: "description", content: Site.description },
+    // Facebook / Opengraph
+    { name: "og:type", content: "website" },
+    { name: "og:url", content: Site.url },
+    { name: "og:title", content: Site.name },
+    { name: "og:description", content: Site.description },
+    { name: "og:image", content: Site.mainIcon },
+
+    // Twitter
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:url", content: Site.url },
+    { name: "twitter:title", content: Site.name },
+    { name: "twitter:description", content: Site.description },
+    { name: "twitter:image", content: Site.mainIcon },
+  ];
 }

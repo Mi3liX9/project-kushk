@@ -53,7 +53,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             name={meta.name}
             property={meta.property}
             content={meta.content}
-            key={meta.key}
+            key={meta.key ?? meta.name}
           />
         ))}
       </Head>
