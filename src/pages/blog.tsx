@@ -22,7 +22,6 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     { property: "og:title", content: Site.name },
     { property: "og:description", content: Site.description },
     { property: "og:image", content: Site.url + Site.mainIcon },
-
     // Twitter
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:url", content: Site.url },
