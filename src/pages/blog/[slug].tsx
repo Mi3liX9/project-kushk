@@ -20,14 +20,14 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
     { property: "og:url", content: Site.url },
     { property: "og:title", content: frontMatter.title },
     { property: "og:description", content: frontMatter.excerpt },
-    { property: "og:image", content: frontMatter.image },
+    { property: "og:image", content: Site.url + frontMatter.image },
 
     // Twitter
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:url", content: Site.url },
     { property: "twitter:title", content: frontMatter.title },
     { property: "twitter:description", content: frontMatter.excerpt },
-    { property: "twitter:image", content: frontMatter.image },
+    { property: "twitter:image", content: Site.url + frontMatter.image },
   ];
   return (
     <>

@@ -45,13 +45,13 @@ export class Site {
     { property: "og:url", content: Site.url },
     { property: "og:title", content: Site.name },
     { property: "og:description", content: Site.description },
-    { property: "og:image", content: Site.mainIcon },
+    { property: "og:image", content: Site.url + Site.mainIcon },
 
     // Twitter
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:url", content: Site.url },
     { property: "twitter:title", content: Site.name },
     { property: "twitter:description", content: Site.description },
-    { property: "twitter:image", content: Site.mainIcon },
+    { property: "twitter:image", content: Site.url + Site.mainIcon },
   ];
 }
