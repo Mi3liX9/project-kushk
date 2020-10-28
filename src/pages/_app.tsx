@@ -50,10 +50,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="shortcut icon" href={Site.mainIcon} />
         {Site.meta.map((meta) => (
           <meta
-            name={meta.name}
+            // name={meta.property}
             property={meta.property}
             content={meta.content}
-            key={meta.key ?? meta.name}
+            key={meta.key ?? meta.property}
           />
         ))}
       </Head>

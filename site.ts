@@ -1,5 +1,4 @@
 export interface Metatags {
-  name?: string;
   property?: string;
   content?: string;
   key?: string;
@@ -40,19 +39,19 @@ export class Site {
     ].concat();
   }
   static meta: Metatags[] = [
-    { name: "description", content: Site.description },
+    { property: "description", content: Site.description },
     // Facebook / Opengraph
-    { name: "og:type", content: "website" },
-    { name: "og:url", content: Site.url },
-    { name: "og:title", content: Site.name },
-    { name: "og:description", content: Site.description },
-    { name: "og:image", content: Site.mainIcon },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: Site.url },
+    { property: "og:title", content: Site.name },
+    { property: "og:description", content: Site.description },
+    { property: "og:image", content: Site.mainIcon },
 
     // Twitter
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:url", content: Site.url },
-    { name: "twitter:title", content: Site.name },
-    { name: "twitter:description", content: Site.description },
-    { name: "twitter:image", content: Site.mainIcon },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:url", content: Site.url },
+    { property: "twitter:title", content: Site.name },
+    { property: "twitter:description", content: Site.description },
+    { property: "twitter:image", content: Site.mainIcon },
   ];
 }

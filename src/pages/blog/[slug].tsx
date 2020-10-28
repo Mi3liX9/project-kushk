@@ -12,22 +12,22 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
   const content = hydrate(mdxSource);
   const metatags: Metatags[] = [
     // GENERAL
-    { name: "title", content: frontMatter.title },
-    { name: "description", content: frontMatter.excerpt },
+    { property: "title", content: frontMatter.title },
+    { property: "description", content: frontMatter.excerpt },
 
     // Open Graph / Facebook
-    { name: "og:type", content: "article" },
-    { name: "og:url", content: Site.url },
-    { name: "og:title", content: frontMatter.title },
-    { name: "og:description", content: frontMatter.excerpt },
-    { name: "og:image", content: frontMatter.image },
+    { property: "og:type", content: "article" },
+    { property: "og:url", content: Site.url },
+    { property: "og:title", content: frontMatter.title },
+    { property: "og:description", content: frontMatter.excerpt },
+    { property: "og:image", content: frontMatter.image },
 
     // Twitter
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:url", content: Site.url },
-    { name: "twitter:title", content: frontMatter.title },
-    { name: "twitter:description", content: frontMatter.excerpt },
-    { name: "twitter:image", content: frontMatter.image },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:url", content: Site.url },
+    { property: "twitter:title", content: frontMatter.title },
+    { property: "twitter:description", content: frontMatter.excerpt },
+    { property: "twitter:image", content: frontMatter.image },
   ];
   return (
     <>
@@ -39,7 +39,7 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
           (meta) =>
             (meta.content || meta.property) && (
               <meta
-                name={meta.name}
+                name={meta.property}
                 content={meta.content}
                 property={meta.property}
                 key={meta.key}
