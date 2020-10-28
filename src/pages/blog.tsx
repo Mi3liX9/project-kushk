@@ -66,7 +66,7 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 // name={meta.property}
                 content={meta.content}
                 property={meta.property}
-                key={meta.key ?? meta.property}
+                key={meta.property}
               />
             )
         )}
