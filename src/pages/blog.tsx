@@ -5,6 +5,7 @@ import { InferGetStaticPropsType } from "next";
 import { BlogService } from "src/blog/blog.service";
 import { TagTitle } from "src/components/tag";
 import Head from "next/head";
+import { Site } from "site";
 
 const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   postData,
