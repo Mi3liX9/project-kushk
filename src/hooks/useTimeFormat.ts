@@ -11,5 +11,5 @@ export function useDateFormat(
   date: Date = new Date(),
   options: Intl.DateTimeFormatOptions = defaultOptions
 ) {
-  return new Intl.DateTimeFormat("default", options).format(date);
+  return date.toLocaleString("default", options);
 }
