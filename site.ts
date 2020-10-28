@@ -11,7 +11,7 @@ export class Site {
   static url =
     process.env.NODE_ENV === "development"
       ? "localhost:3000"
-      : process.env.URL ?? "https://mi3li-blog.vercel.app/";
+      : process.env.URL ?? "https://mi3li-blog.vercel.app";
 
   static tabs = [
     { title: "المدونة التقنية", path: "/blog" },
@@ -38,20 +38,5 @@ export class Site {
       },
     ].concat();
   }
-  static meta: Metatags[] = [
-    { property: "description", content: Site.description },
-    // Facebook / Opengraph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: Site.url },
-    { property: "og:title", content: Site.name },
-    { property: "og:description", content: Site.description },
-    { property: "og:image", content: Site.url + Site.mainIcon },
-
-    // Twitter
-    { property: "twitter:card", content: "summary_large_image" },
-    { property: "twitter:url", content: Site.url },
-    { property: "twitter:title", content: Site.name },
-    { property: "twitter:description", content: Site.description },
-    { property: "twitter:image", content: Site.url + Site.mainIcon },
-  ];
+  static meta: Metatags[] = [];
 }

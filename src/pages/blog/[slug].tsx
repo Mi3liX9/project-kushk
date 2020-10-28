@@ -39,10 +39,10 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
           (meta) =>
             (meta.content || meta.property) && (
               <meta
-                name={meta.property}
+                // name={meta.property}
                 content={meta.content}
                 property={meta.property}
-                key={meta.key}
+                key={meta.key ?? meta.property}
               />
             )
         )}

@@ -4,6 +4,7 @@ import PostPreview from "src/components/post-preview";
 import { InferGetStaticPropsType } from "next";
 import { BlogService } from "src/blog/blog.service";
 import { TagTitle } from "src/components/tag";
+import Head from "next/head";
 
 const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   postData,
@@ -11,6 +12,23 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const [search, setSearch] = useState("");
   const [tagFilters, setTagFilters] = useState<string[]>([]);
   const [posts, setPosts] = useState(postData.concat());
+
+  const metatags = [
+    { property: "description", content: Site.description },
+    // Facebook / Opengraph
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: Site.url },
+    { property: "og:title", content: Site.name },
+    { property: "og:description", content: Site.description },
+    { property: "og:image", content: Site.url + Site.mainIcon },
+
+    // Twitter
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:url", content: Site.url },
+    { property: "twitter:title", content: Site.name },
+    { property: "twitter:description", content: Site.description },
+    { property: "twitter:image", content: Site.url + Site.mainIcon },
+  ];
 
   const tags = new Set<string>();
   postData.forEach((post) => {
@@ -39,44 +57,59 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   }, [search, tagFilters]);
 
   return (
-    <Container>
-      <StyledSection>
-        <SearchContainer>
-          <p>تصفية المقالات</p>
-          <SearchInput
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="ابحث عن أي مقال"
-          />
-          {[...tags].map((tag) =>
-            tagFilters.includes(tag) ? (
-              <FilledTagTitle onClick={() => toggleTag(tag)} key={tag}>
-                {tag}
-              </FilledTagTitle>
-            ) : (
-              <TagTitle onClick={() => toggleTag(tag)} key={tag}>
-                {tag}
-              </TagTitle>
+    <>
+      <Head>
+        {metatags.map(
+          (meta) =>
+            (meta.content || meta.property) && (
+              <meta
+                // name={meta.property}
+                content={meta.content}
+                property={meta.property}
+                key={meta.key ?? meta.property}
+              />
             )
-          )}
-        </SearchContainer>
-      </StyledSection>
+        )}
+      </Head>
+      <Container>
+        <StyledSection>
+          <SearchContainer>
+            <p>تصفية المقالات</p>
+            <SearchInput
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="ابحث عن أي مقال"
+            />
+            {[...tags].map((tag) =>
+              tagFilters.includes(tag) ? (
+                <FilledTagTitle onClick={() => toggleTag(tag)} key={tag}>
+                  {tag}
+                </FilledTagTitle>
+              ) : (
+                <TagTitle onClick={() => toggleTag(tag)} key={tag}>
+                  {tag}
+                </TagTitle>
+              )
+            )}
+          </SearchContainer>
+        </StyledSection>
 
-      <Posts>
-        {posts.map((post) => (
-          <PostPreview
-            place="outside"
-            title={post.title}
-            image={post.image}
-            date={post.date}
-            tags={post.tags}
-            slug={post.slug}
-            key={post.slug}
-          />
-        ))}
-      </Posts>
-    </Container>
+        <Posts>
+          {posts.map((post) => (
+            <PostPreview
+              place="outside"
+              title={post.title}
+              image={post.image}
+              date={post.date}
+              tags={post.tags}
+              slug={post.slug}
+              key={post.slug}
+            />
+          ))}
+        </Posts>
+      </Container>
+    </>
   );
 };
 
