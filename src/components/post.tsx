@@ -35,7 +35,7 @@ const Post: React.FC<PostProps> = ({
             navigator.share({
               title,
               text: exeprt,
-              url: Site.url + "/" + slug,
+              url: Site.url + "/blog/" + slug,
             });
           }}
         >
