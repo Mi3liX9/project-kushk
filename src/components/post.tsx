@@ -113,7 +113,4 @@ const OtherPosts = styled.div`
   margin: 20px;
   gap: 5px;
   user-select: none;
-  @supports not (gap: 5px) {
-    display: grid;
-  }
 `;

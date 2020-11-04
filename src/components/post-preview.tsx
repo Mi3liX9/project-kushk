@@ -22,7 +22,9 @@ const PostPreview: React.FC<Props> = ({
 }) => {
   date = typeof date === "string" ? new Date(date + " utc +3") : date;
   const newDate = useDateFormat(date);
-  const timeDifference = new Date().getDate() - date.getDate();
+  const timeDifference =
+    (new Date().getTime() - date.getTime()) / 1000 / 60 / 60 / 24;
+
   image = image && image.length > 4 ? image : Site.mainIcon;
   const titleComponent =
     place === "outside" ? (

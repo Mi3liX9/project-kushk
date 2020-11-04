@@ -47,7 +47,9 @@ export class BlogService {
         frontMatter,
       };
     });
-
+    postData.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
     return postData;
   }
 }
