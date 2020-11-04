@@ -12,7 +12,13 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   const [search, setSearch] = useState("");
   const [tagFilters, setTagFilters] = useState<string[]>([]);
-  const [posts, setPosts] = useState(postData.concat());
+  const [posts, setPosts] = useState(
+    postData
+      .concat()
+      .filter(
+        (post) => new Date().getTime() - new Date(post.date).getTime() > 0
+      )
+  );
 
   const metatags = [
     { property: "description", content: Site.description },
@@ -31,7 +37,7 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   ];
 
   const tags = new Set<string>();
-  postData.forEach((post) => {
+  posts.forEach((post) => {
     post.tags.forEach((tag) => tags.add(tag));
   });
 
@@ -44,7 +50,7 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   };
 
   useEffect(() => {
-    let filtedPosts = postData.filter((post) => {
+    let filtedPosts = posts.filter((post) => {
       const words = search.split(" ");
       const title = post.title;
       return words.every((word) => title.includes(word));
