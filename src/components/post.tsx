@@ -72,30 +72,7 @@ const Article = styled.article`
   padding: 15px 1rem;
   line-height: 2;
   overflow: hidden;
-
-  h1 {
-    padding: 0;
-    margin: 5px 0px;
-  }
-
-  p {
-    margin: 5px 0;
-  }
-
-  ul {
-    margin-top: 0px;
-    margin-bottom: 5px;
-  }
-
   user-select: text;
-  a {
-    color: var(--color-primary);
-    ::selection,
-    :hover {
-      text-decoration: underline;
-      color: #eb5757;
-    }
-  }
 `;
 
 // const Section = styled.section`

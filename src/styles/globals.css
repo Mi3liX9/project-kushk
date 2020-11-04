@@ -43,6 +43,7 @@ input::placeholder {
   --background-secondary: white;
   --background-icon: rgba(0, 0, 0, 0.1);
   --input-backround: #f2f2f2;
+  --blockquote-backgorund: rgba(0, 0, 0, 0.1);
   /* text */
   --text-color-primary: #202020;
   --placeholder-color: #909090;
@@ -60,6 +61,7 @@ input::placeholder {
   --background-article: #303030;
   --background-icon: rgba(255, 255, 255, 0.1);
   --input-backround: #303030;
+  --blockquote-backgorund: rgba(0, 0, 0, 0.3);
 
   --highlight-color: rgba(86, 204, 242, 0.2);
 
