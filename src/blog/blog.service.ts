@@ -4,6 +4,7 @@ import path from "path";
 import renderToString from "next-mdx-remote/render-to-string";
 import matter from "gray-matter";
 import { Site } from "site";
+import mdxOptions from "src/mdx-options";
 
 const root = process.cwd();
 
@@ -26,7 +27,7 @@ export class BlogService {
     const previous = posts[thisPosts - 1] ?? null;
 
     const { data, content } = matter(source);
-    const mdxSource = await renderToString(content);
+    const mdxSource = await renderToString(content, mdxOptions);
 
     return { mdxSource, frontMatter: data, next, previous };
   }

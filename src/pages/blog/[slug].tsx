@@ -6,6 +6,7 @@ import Head from "next/head";
 import { Metatags, Site } from "site";
 import { BlogService } from "src/blog/blog.service";
 import { InferGetStaticPropsType } from "next";
+import mdxOptions from "src/mdx-options";
 
 const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   mdxSource,
@@ -13,7 +14,7 @@ const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   next,
   previous,
 }) => {
-  const content = hydrate(mdxSource);
+  const content = hydrate(mdxSource, mdxOptions);
   const metatags: Metatags[] = [
     // GENERAL
     { property: "title", content: frontMatter.title },
