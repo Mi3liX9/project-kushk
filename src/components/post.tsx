@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { Site } from "site";
 import { PostProps } from "src/interfaces/post";
 import styled from "styled-components";
 import PostPreview from "./post-preview";
@@ -13,6 +14,7 @@ const Post: React.FC<PostProps> = ({
   children,
   next,
   previous,
+  exeprt,
 }) => {
   return (
     <Container>
@@ -26,6 +28,20 @@ const Post: React.FC<PostProps> = ({
           slug={slug}
         />
         {children}
+
+        <Share
+          href="#"
+          onClick={() => {
+            navigator.share({
+              title,
+              text: exeprt,
+              url: Site.url + "/" + slug,
+            });
+          }}
+        >
+          اذا اعجبك الخبر لا تنسى مشاركته مع أصدقائك
+        </Share>
+
         {(previous || next) && (
           <OtherPosts>
             {previous && (
@@ -90,4 +106,9 @@ const OtherPosts = styled.div`
   margin: 20px;
   gap: 5px;
   user-select: none;
+`;
+
+const Share = styled.a`
+  margin: 10px;
+  color: var(--color-primary);
 `;

@@ -13,6 +13,7 @@ const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   frontMatter,
   next,
   previous,
+  slug,
 }) => {
   const content = hydrate(mdxSource, mdxOptions);
   const metatags: Metatags[] = [
@@ -55,9 +56,10 @@ const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Post
         title={frontMatter.title}
         date={frontMatter.date}
-        slug={frontMatter.slug}
+        slug={slug}
         tags={frontMatter.tags}
         image={frontMatter.image}
+        exeprt={frontMatter.exeprt}
         next={next ? { title: next.title, slug: next.slug } : undefined}
         previous={
           previous ? { title: previous.title, slug: previous.slug } : undefined
@@ -84,6 +86,10 @@ export async function getStaticProps({ params }: any) {
     mdxSource,
     next,
     previous,
+    // slug,
   } = await blogService.getPostBySlog(params.slug);
-  return { props: { mdxSource, frontMatter, next, previous } };
+
+  return {
+    props: { mdxSource, frontMatter, next, previous, slug: params.slug },
+  };
 }

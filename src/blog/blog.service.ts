@@ -29,7 +29,12 @@ export class BlogService {
     const { data, content } = matter(source);
     const mdxSource = await renderToString(content, mdxOptions);
 
-    return { mdxSource, frontMatter: data, next, previous };
+    return {
+      mdxSource,
+      frontMatter: data,
+      next,
+      previous,
+    };
   }
 
   async getPosts() {

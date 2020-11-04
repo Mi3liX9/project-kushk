@@ -4,6 +4,7 @@ export interface PostProps {
   date: Date | string;
   tags?: string[];
   slug: string;
+  exeprt?: string;
   next?: {
     title: string;
     slug: string;
