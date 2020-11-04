@@ -1,4 +1,5 @@
-import React, { Children } from "react";
+import Link from "next/link";
+import React from "react";
 import { PostProps } from "src/interfaces/post";
 import styled from "styled-components";
 import PostPreview from "./post-preview";
@@ -10,6 +11,8 @@ const Post: React.FC<PostProps> = ({
   image,
   tags,
   children,
+  next,
+  previous,
 }) => {
   return (
     <Container>
@@ -23,6 +26,27 @@ const Post: React.FC<PostProps> = ({
           slug={slug}
         />
         {children}
+        {(previous || next) && (
+          <OtherPosts>
+            {previous && (
+              <div>
+                السابق:{" "}
+                <Link href={previous.slug}>
+                  <a>{previous.title}</a>
+                </Link>
+              </div>
+            )}
+
+            {next && (
+              <div>
+                التالي:{" "}
+                <Link href={next.slug}>
+                  <a>{next.title}</a>
+                </Link>
+              </div>
+            )}
+          </OtherPosts>
+        )}
       </Article>
       {/* <Section></Section> */}
     </Container>
@@ -74,10 +98,22 @@ const Article = styled.article`
   }
 `;
 
-const Section = styled.section`
-  background: var(--background-secondary);
-  border-radius: 5px;
-  flex-grow: 1;
-  flex-basis: 250px;
-  padding: 15px;
+// const Section = styled.section`
+//   background: var(--background-secondary);
+//   border-radius: 5px;
+//   flex-grow: 1;
+//   flex-basis: 250px;
+//   padding: 15px;
+// `;
+
+const OtherPosts = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px;
+  gap: 5px;
+  user-select: none;
+  @supports not (gap: 5px) {
+    display: grid;
+  }
 `;

@@ -5,10 +5,14 @@ import Post from "src/components/post";
 import Head from "next/head";
 import { Metatags, Site } from "site";
 import { BlogService } from "src/blog/blog.service";
+import { InferGetStaticPropsType } from "next";
 
-const root = process.cwd();
-
-export default function BlogPost({ mdxSource, frontMatter }: any) {
+const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  mdxSource,
+  frontMatter,
+  next,
+  previous,
+}) => {
   const content = hydrate(mdxSource);
   const metatags: Metatags[] = [
     // GENERAL
@@ -53,12 +57,18 @@ export default function BlogPost({ mdxSource, frontMatter }: any) {
         slug={frontMatter.slug}
         tags={frontMatter.tags}
         image={frontMatter.image}
+        next={next ? { title: next.title, slug: next.slug } : undefined}
+        previous={
+          previous ? { title: previous.title, slug: previous.slug } : undefined
+        }
       >
         {content}
       </Post>
     </>
   );
-}
+};
+
+export default BlogPost;
 
 const blogService = new BlogService();
 export async function getStaticPaths() {
@@ -68,8 +78,11 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }: any) {
-  const { frontMatter, mdxSource } = await blogService.getPostBySlog(
-    params.slug
-  );
-  return { props: { mdxSource, frontMatter } };
+  const {
+    frontMatter,
+    mdxSource,
+    next,
+    previous,
+  } = await blogService.getPostBySlog(params.slug);
+  return { props: { mdxSource, frontMatter, next, previous } };
 }

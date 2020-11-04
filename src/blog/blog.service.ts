@@ -19,10 +19,16 @@ export class BlogService {
       path.join(root, "posts", `${slug}.mdx`),
       "utf8"
     );
+
+    const posts = await this.getPosts();
+    const thisPosts = posts.findIndex((post) => post.slug === slug);
+    const next = posts[thisPosts + 1] ?? null;
+    const previous = posts[thisPosts - 1] ?? null;
+
     const { data, content } = matter(source);
     const mdxSource = await renderToString(content);
 
-    return { mdxSource, frontMatter: data };
+    return { mdxSource, frontMatter: data, next, previous };
   }
 
   async getPosts() {
@@ -36,7 +42,7 @@ export class BlogService {
         content,
         title: frontMatter.title as string,
         image: (frontMatter.image as string) ?? Site.mainIcon,
-        tags: (frontMatter.tags as string[]) ?? [],
+        tags: (frontMatter.tags as string[]) ?? ["عام"],
         date: frontMatter.date as string,
         frontMatter,
       };
