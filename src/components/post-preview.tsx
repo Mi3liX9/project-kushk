@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import React from "react";
 import Image from "./post-image";
 import Row from "./row";
-import Tags from "./tag";
+import Tag from "./tag";
 import { PostProps } from "src/interfaces/post";
 import { Site } from "site";
 
@@ -39,7 +39,10 @@ const PostPreview: React.FC<Props> = ({
       <Details className="details">
         {titleComponent}
         <Row className="row">
-          <Tags tags={tags} isNew={timeDifference < 7} />
+          {timeDifference < 7 && <Tag isNew title="جديد" />}
+          {tags?.map((tag) => (
+            <Tag title={tag} key={tag} />
+          ))}
           <p className="date">نشرت يوم {newDate}</p>
         </Row>
       </Details>

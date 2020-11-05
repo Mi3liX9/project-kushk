@@ -1,56 +1,39 @@
 import React from "react";
 import { useBlog } from "src/hooks/useBlog";
 import styled from "styled-components";
-import { TagTitle } from "./tag";
+import Tag from "./tag";
 import SearchInput from "./search-input";
-const Search: React.FC = () => {
-  const {
-    posts,
-    search,
-    setSearch,
-    tags: tagFilters,
-    setTags: setTagFilters,
-  } = useBlog();
-  const allTags = new Set<string>();
 
-  posts.forEach((post) => {
-    post.tags?.forEach((tag) => allTags.add(tag));
+const Search: React.FC = () => {
+  const { search, setSearch, tags, setTags, original } = useBlog();
+  const postsTags = new Set<string>();
+
+  original.forEach((post) => {
+    post.tags?.forEach((tag) => postsTags.add(tag));
   });
 
+  // This will add/remove the tag to the filter list
   const toggleTag = (tag: string) => {
-    if (tagFilters.includes(tag)) {
-      setTagFilters(tagFilters.filter((myTag) => myTag !== tag));
-    } else {
-      setTagFilters(tagFilters.concat(tag));
-    }
+    tags.includes(tag)
+      ? setTags(tags.filter((myTag) => myTag !== tag))
+      : setTags(tags.concat(tag));
   };
 
   return (
     <SearchContainer>
       <p>تصفية المقالات</p>
-      {/* <SearchInput
-        type="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="ابحث عن أي مقال"
-      /> */}
-
       <SearchInput search={search} setSearch={setSearch} />
-      {[...allTags].map((tag) =>
-        tagFilters.includes(tag) ? (
-          <FilledTagTitle onClick={() => toggleTag(tag)} key={tag}>
-            {tag}
-          </FilledTagTitle>
-        ) : (
-          <TagTitle onClick={() => toggleTag(tag)} key={tag}>
-            {tag}
-          </TagTitle>
-        )
-      )}
+      {[...postsTags].map((tag) => (
+        <Tag
+          title={tag}
+          key={tag}
+          filled={tags.includes(tag)}
+          onClick={() => toggleTag(tag)}
+        />
+      ))}
     </SearchContainer>
   );
 };
-
 export default Search;
 
 const SearchContainer = styled.div`
@@ -66,9 +49,4 @@ const SearchContainer = styled.div`
     font-weight: bold;
     user-select: none;
   }
-`;
-
-const FilledTagTitle = styled(TagTitle)`
-  background: var(--color-primary);
-  /* border: 0; */
 `;

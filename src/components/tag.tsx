@@ -1,22 +1,26 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Tags: React.FC<{ tags?: string[]; isNew: boolean }> = ({
-  tags,
-  isNew,
+interface Props {
+  title: string;
+  filled?: boolean;
+  isNew?: boolean;
+  onClick?: () => any;
+}
+
+const Tag: React.FC<Props> = ({
+  title,
+  filled = false,
+  isNew = false,
+  onClick,
 }) => (
-  <>
-    {isNew && <NewTagTitle className="tag new">جديد</NewTagTitle>}
-    {tags?.map((tag) => (
-      <TagTitle className="tag" key={tag}>
-        {tag}
-      </TagTitle>
-    ))}
-  </>
+  <StyledTag filled={filled} isNew={isNew} onClick={onClick}>
+    {title}
+  </StyledTag>
 );
 
-export default Tags;
+export default Tag;
 
-const TagTitle = styled.div`
+const StyledTag = styled.div<{ isNew: boolean; filled: boolean }>`
   margin: 0;
   line-height: 1;
   font-size: 0.8rem;
@@ -24,10 +28,15 @@ const TagTitle = styled.div`
   padding: 3px 5px;
   border-radius: 5px;
   user-select: none;
-`;
 
-const NewTagTitle = styled(TagTitle)`
-  border-color: #27ae60;
+  ${({ filled }) =>
+    filled &&
+    css`
+      background: var(--color-primary);
+    `}
+  ${({ isNew }) =>
+    isNew &&
+    css`
+      border-color: #27ae60;
+    `}
 `;
-
-export { NewTagTitle, TagTitle };
