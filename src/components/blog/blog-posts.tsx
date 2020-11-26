@@ -1,28 +1,18 @@
 import Head from "next/head";
 import React from "react";
-import { Site } from "site";
 import { useBlog } from "src/hooks/useBlog";
 import styled from "styled-components";
 import PostPreview from "./post-preview";
 
-const BlogPosts = () => {
-  const { posts } = useBlog();
+interface Props {
+  metatags: {
+    property: string;
+    content: string;
+  }[];
+}
 
-  const metatags = [
-    { property: "description", content: Site.description },
-    // Facebook / Opengraph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: Site.url },
-    { property: "og:title", content: Site.name },
-    { property: "og:description", content: Site.description },
-    { property: "og:image", content: Site.url + Site.mainIcon },
-    // Twitter
-    { property: "twitter:card", content: "summary_large_image" },
-    { property: "twitter:url", content: Site.url },
-    { property: "twitter:title", content: Site.name },
-    { property: "twitter:description", content: Site.description },
-    { property: "twitter:image", content: Site.url + Site.mainIcon },
-  ];
+const BlogPosts: React.FC<Props> = ({ metatags }) => {
+  const { posts } = useBlog();
 
   return (
     <>
@@ -31,7 +21,6 @@ const BlogPosts = () => {
           (meta) =>
             (meta.content || meta.property) && (
               <meta
-                // name={meta.property}
                 content={meta.content}
                 property={meta.property}
                 key={meta.property}
@@ -43,7 +32,6 @@ const BlogPosts = () => {
         <Posts>
           {posts.map((post) => (
             <PostPreview
-              place="outside"
               title={post.title}
               image={post.image}
               date={post.date}

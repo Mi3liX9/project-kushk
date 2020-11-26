@@ -1,7 +1,7 @@
 import React from "react";
 import { useBlog } from "src/hooks/useBlog";
 import styled from "styled-components";
-import Tag from "../shared/tag";
+import Tag from "../tag/tag";
 import SearchInput from "./search-input";
 
 const Search: React.FC = () => {
@@ -49,10 +49,4 @@ const SearchContainer = styled.div`
     font-weight: bold;
     user-select: none;
   }
-
-  /* @supports (not gap: 10px) {
-    > :not(:last-child) {
-      margin: 10px;
-    }
-  } */
 `;

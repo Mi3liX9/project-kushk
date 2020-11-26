@@ -1,8 +1,8 @@
 export interface PostProps {
   title: string;
-  image?: string;
+  image: string;
   date: Date | string;
-  tags?: string[];
+  tags: string[];
   slug: string;
   exeprt?: string;
   next?: {
