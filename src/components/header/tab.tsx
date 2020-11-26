@@ -25,6 +25,7 @@ const StyledTab = styled.a<{ isCurrentRoute?: boolean }>`
   padding: 5px;
   color: var(--tab-color);
   cursor: pointer;
+
   ${({ isCurrentRoute: isHere }) =>
     isHere
       ? css`

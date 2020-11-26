@@ -3,29 +3,31 @@ import { Site } from "site";
 import { useTheme } from "src/hooks/useTheme";
 import styled from "styled-components";
 import HeaderTitle from "./header-title";
-import Icon from "./icon";
+import Icon from "../shared/icon";
 import Tab from "./tab";
 
 const Header = () => {
   const [theme, toggleTheme] = useTheme();
   const tabs = Site.tabs;
   return (
-    <Container>
-      <Top>
-        <HeaderTitle />
-        <a
-          href={Site.socialMedia[0].url}
-          target="_blank"
-          style={{ height: 45 }}
-        >
-          <MyIcon src={Site.socialMedia[0].image} />
-        </a>
+    <>
+      <Container>
+        <Top>
+          <HeaderTitle />
+          <a
+            href={Site.socialMedia[0].url}
+            target="_blank"
+            style={{ height: 45 }}
+          >
+            <MyIcon src={Site.socialMedia[0].image} />
+          </a>
 
-        <ToggleTheme
-          onClick={toggleTheme as any}
-          src={theme == "dark" ? "/icons/moon.svg" : "/icons/sun.svg"}
-        />
-      </Top>
+          <ToggleTheme
+            onClick={toggleTheme as any}
+            src={theme == "dark" ? "/icons/moon.svg" : "/icons/sun.svg"}
+          />
+        </Top>
+      </Container>
       {tabs.length > 1 ? (
         <Tabs>
           {tabs.map((tab) => (
@@ -35,7 +37,7 @@ const Header = () => {
           ))}
         </Tabs>
       ) : null}
-    </Container>
+    </>
   );
 };
 
@@ -67,7 +69,6 @@ const Tabs = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  height: 40px;
 `;
 
 const ToggleTheme = styled(Icon)`

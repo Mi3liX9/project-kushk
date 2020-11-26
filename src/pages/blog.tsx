@@ -2,8 +2,8 @@ import React from "react";
 import { InferGetStaticPropsType } from "next";
 import { BlogService } from "src/blog/blog.service";
 import PostsProvider from "src/hooks/useBlog";
-import Search from "src/components/blog-search";
-import BlogPosts from "src/components/blog-posts";
+import Search from "src/components/blog/blog-search";
+import BlogPosts from "src/components/blog/blog-posts";
 
 interface Props extends InferGetStaticPropsType<typeof getStaticProps> {}
 

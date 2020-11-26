@@ -1,12 +1,12 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import Head from "next/head";
 import styled from "styled-components";
-import Header from "src/components/header";
-import Footer from "src/components/footer";
+import Header from "src/components/header/header";
 
 import "../styles/globals.css";
 import { Site } from "site";
 import React from "react";
+import Footer from "src/components/footer/footer";
 
 const darkThemeFunc = `
               (function() {

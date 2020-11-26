@@ -3,7 +3,7 @@ import React from "react";
 import { Site } from "site";
 import { PostProps } from "src/interfaces/post";
 import styled from "styled-components";
-import PostPreview from "./post-preview";
+import PostPreview from "../blog/post-preview";
 
 const Post: React.FC<PostProps> = ({
   title,

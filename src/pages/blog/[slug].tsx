@@ -1,7 +1,7 @@
 import React from "react";
 // @ts-ignore
 import hydrate from "next-mdx-remote/hydrate";
-import Post from "src/components/post";
+import Post from "src/components/post/post";
 import Head from "next/head";
 import { Metatags, Site } from "site";
 import { BlogService } from "src/blog/blog.service";

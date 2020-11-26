@@ -2,9 +2,9 @@ import { useDateFormat } from "src/hooks/useTimeFormat";
 import Link from "next/link";
 import styled, { css } from "styled-components";
 import React from "react";
-import Image from "./post-image";
-import Row from "./row";
-import Tag from "./tag";
+import Image from "../post-image";
+import Row from "../shared/row";
+import Tag from "../shared/tag";
 import { PostProps } from "src/interfaces/post";
 import { Site } from "site";
 
@@ -135,3 +135,25 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+// const NewPostPreview: React.FC<Props> = (props) => {
+//   const isTitle = false;
+//   return (
+//     <Link href={props.slug}>
+//       <NewContainer>
+//         <img />
+//         {/* <div>{isTitle ? <h1></h1> : <p></p>}</div> */}
+
+//       </NewContainer>
+//     </Link>
+//   );
+// };
+
+// const NewContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   width: 100%;
+//   padding: 5px;
+//   gap: 15px;
+//   border-radius: 15px;
+// `;

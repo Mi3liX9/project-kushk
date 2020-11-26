@@ -1,9 +1,8 @@
 import { Site } from "site";
 import styled from "styled-components";
-import Icon from "./icon";
+import Icon from "../shared/icon";
 
 const Footer: React.FC = () => {
-  const year = new Date().getFullYear();
   return (
     <StyledFooter>
       <p>مايتي بلوق</p>
