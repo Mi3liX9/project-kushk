@@ -72,7 +72,7 @@ export default MyApp;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 5px 0px;
   gap: 10px;
   min-height: 100vh;
 

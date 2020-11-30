@@ -35,7 +35,7 @@ const Container = styled.a`
   margin-block: 15px;
   background: var(--blockquote-backgorund);
   cursor: pointer;
-
+  user-select: none;
   :hover {
     background: var(--color-primary);
   }
