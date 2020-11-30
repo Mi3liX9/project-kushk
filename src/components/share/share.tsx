@@ -33,7 +33,7 @@ const Container = styled.a`
   align-items: center;
   gap: 10px;
   margin-block: 15px;
-  background: var(--background-article);
+  background: var(--blockquote-backgorund);
   cursor: pointer;
 
   :hover {

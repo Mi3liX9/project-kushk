@@ -18,7 +18,7 @@ const AnotherArticle: React.FC<Props> = ({ post, type }) => {
 };
 
 const Container = styled.div`
-  background: var(--background-article);
+  background: var(--blockquote-backgorund);
   flex-basis: 100%;
   cursor: pointer;
   padding: 10px;

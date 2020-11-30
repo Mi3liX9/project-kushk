@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import styled, { css } from "styled-components";
 
 const components = {
@@ -13,7 +12,9 @@ const components = {
   h6: (props: any) => <H6 {...props} />,
   ul: (props: any) => <List {...props} />,
   blockquote: (props: any) => <Blockquote {...props} />,
-  //   img: (props: any) => <Image {...props} width={props.width ?? "100%"} />,
+  img: (props: any) => (
+    <img {...props} style={{ maxHeight: 200, maxWidth: "80%" }} />
+  ),
 };
 
 export default {
