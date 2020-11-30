@@ -22,6 +22,7 @@ export class BlogService {
     );
 
     const posts = await this.getPosts();
+    posts.sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)));
     const thisPosts = posts.findIndex((post) => post.slug === slug);
     const next = posts[thisPosts + 1] ?? null;
     const previous = posts[thisPosts - 1] ?? null;

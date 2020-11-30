@@ -2,9 +2,12 @@ import Link from "next/link";
 import styled from "styled-components";
 import React from "react";
 import { PostProps } from "src/interfaces/post";
-import Image from "../post-image";
 import Tags from "../tag/tags";
-import { useDateFormat } from "src/hooks/useTimeFormat";
+import {
+  getTimeDifferecne,
+  getUTC3Date,
+  useDateFormat,
+} from "src/hooks/useTimeFormat";
 interface Props extends PostProps {}
 
 const PostPreview: React.FC<Props> = ({ title, image, date, tags, slug }) => {
@@ -53,6 +56,14 @@ const Details = styled.div`
   gap: 7px;
 `;
 
+const Image = styled.img`
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+`;
+
 const Text = styled.p`
   margin: 0;
   font-size: 1rem;
@@ -66,11 +77,3 @@ const Title = styled(Text)`
 const DateText = styled(Text)`
   font-size: 0.8rem;
 `;
-
-function getUTC3Date(date: string | Date) {
-  return new Date(date + " utc +3");
-}
-
-function getTimeDifferecne(date: Date) {
-  return (new Date().getTime() - date.getTime()) / 1000 / 60 / 60 / 24;
-}
