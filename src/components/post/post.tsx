@@ -1,5 +1,4 @@
 import React from "react";
-import { Site } from "site";
 import { PostProps } from "src/interfaces/post";
 import styled from "styled-components";
 import OtherPosts from "./other-posts";
@@ -16,21 +15,17 @@ const Post: React.FC<PostProps> = ({
   next,
   previous,
   exeprt,
-}) => {
-  return (
-    <Container>
-      <PostTitle title={title} date={date} image={image} tags={tags} />
-      {/* <Share title={title} text={exeprt} url={slug}>
-        <p>مشاركة</p>
-      </Share> */}
-      <Article id="article">{children}</Article>
-      <Share title={title} text={exeprt} url={slug}>
-        <p>مشاركة</p>
-      </Share>
-      <OtherPosts next={next} previous={previous} />
-    </Container>
-  );
-};
+}) => (
+  <Container>
+    <PostTitle title={title} date={date} image={image} tags={tags} />
+
+    <Article id="article">{children}</Article>
+    <Share title={title} text={exeprt} url={slug}>
+      <p>مشاركة</p>
+    </Share>
+    <OtherPosts next={next} previous={previous} />
+  </Container>
+);
 
 export default Post;
 

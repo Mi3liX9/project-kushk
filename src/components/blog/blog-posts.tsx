@@ -38,6 +38,7 @@ const BlogPosts: React.FC<Props> = ({ metatags }) => {
               tags={post.tags}
               slug={post.slug}
               key={post.slug}
+              exeprt={post.exeprt}
             />
           ))}
         </Posts>

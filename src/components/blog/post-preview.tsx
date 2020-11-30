@@ -10,15 +10,21 @@ import {
 } from "src/hooks/useTimeFormat";
 interface Props extends PostProps {}
 
-const PostPreview: React.FC<Props> = ({ title, image, date, tags, slug }) => {
+const PostPreview: React.FC<Props> = ({
+  title,
+  image,
+  date,
+  tags,
+  slug,
+  exeprt,
+}) => {
   date = getUTC3Date(date);
   const timeDifference = getTimeDifferecne(date);
   const isNew = timeDifference < 7;
   const formatedDate = useDateFormat(date);
-
   return (
     <Link href={"blog/" + slug}>
-      <Container href={"blog/" + slug}>
+      <Container href={"blog/" + slug} title={exeprt}>
         <Image src={image} draggable={false} />
         <Details className="details">
           <Title className="title">{title}</Title>
