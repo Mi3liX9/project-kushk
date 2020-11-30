@@ -19,6 +19,7 @@ a {
   transition: all 150ms linear;
   color: var(--text-color-primary);
   font-family: "Tajawal";
+  -webkit-tap-highlight-color: transparent;
 }
 
 *::selection {

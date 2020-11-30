@@ -16,23 +16,30 @@ const PostTitle: React.FC<Props> = ({ title, image, date, tags }) => {
   const formatedDate = useDateFormat(date);
 
   return (
-    <Container>
+    <Outer>
       <Image src={image} draggable={false} />
-      <Title id="title">{title}</Title>
-      <DateText id="date">نُشرت يوم {formatedDate}</DateText>
-      <Tags tags={tags} isNew={isNew} />
-    </Container>
+      <Inner>
+        <Title id="title">{title}</Title>
+        <DateText id="date">نُشرت يوم {formatedDate}</DateText>
+        <Tags tags={tags} isNew={isNew} />
+      </Inner>
+    </Outer>
   );
 };
 
 export default PostTitle;
 
-const Container = styled.div`
+const Outer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-block: 5px;
+`;
+
+const Inner = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
+  gap: 10px;
   padding: 0.4rem;
 `;
 
@@ -40,12 +47,11 @@ const Text = css`
   margin: 0;
   line-height: 1;
   opacity: 0.8;
-  text-align: center;
 `;
 
 const Image = styled.img`
   object-fit: cover;
-  width: min(100%, 250px);
+  width: 80px;
   border-radius: 5px;
 `;
 

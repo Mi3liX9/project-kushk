@@ -18,7 +18,7 @@ const PostPreview: React.FC<Props> = ({ title, image, date, tags, slug }) => {
 
   return (
     <Link href={"blog/" + slug}>
-      <Container>
+      <Container href={"blog/" + slug}>
         <Image src={image} draggable={false} />
         <Details className="details">
           <Title className="title">{title}</Title>
@@ -32,7 +32,7 @@ const PostPreview: React.FC<Props> = ({ title, image, date, tags, slug }) => {
 
 export default PostPreview;
 
-const Container = styled.div`
+const Container = styled.a`
   display: flex;
   align-items: center;
   width: 100%;
@@ -59,8 +59,8 @@ const Details = styled.div`
 const Image = styled.img`
   object-fit: cover;
   aspect-ratio: 1 / 1;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
 `;
 
