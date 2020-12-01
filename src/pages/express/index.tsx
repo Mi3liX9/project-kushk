@@ -8,7 +8,7 @@ const ExpressPage: React.FC = () => {
 export async function getStaticProps() {
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe",
+    // executablePath: "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe",
     args: [
       "--disable-gpu",
       "--renderer",
