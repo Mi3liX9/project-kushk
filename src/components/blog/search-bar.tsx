@@ -1,7 +1,6 @@
 import React from "react";
 import { useBlog } from "src/hooks/useBlog";
 import styled from "styled-components";
-import Tag from "../tag/tag";
 import SearchInput from "./search-input";
 
 const Search: React.FC = () => {
@@ -23,14 +22,14 @@ const Search: React.FC = () => {
     <SearchContainer>
       <p>تصفية المقالات</p>
       <SearchInput search={search} setSearch={setSearch} />
-      {[...postsTags].map((tag) => (
+      {/* {[...postsTags].map((tag) => (
         <Tag
           title={tag}
           key={tag}
           filled={tags.includes(tag)}
           onClick={() => toggleTag(tag)}
         />
-      ))}
+      ))} */}
     </SearchContainer>
   );
 };

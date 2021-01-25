@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import React from "react";
 import { PostProps } from "src/interfaces/post";
-import Tags from "../tag/tags";
+
 import {
   getTimeDifferecne,
   getUTC3Date,
@@ -21,7 +21,7 @@ const PostTitle: React.FC<Props> = ({ title, image, date, tags }) => {
       <Inner>
         <Title id="title">{title}</Title>
         <DateText id="date">نُشرت يوم {formatedDate}</DateText>
-        <Tags tags={tags} isNew={isNew} />
+        {/* <Tags tags={tags} isNew={isNew} /> */}
       </Inner>
     </Outer>
   );

@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { useBlog } from "src/hooks/useBlog";
 import styled from "styled-components";
-import PostPreview from "./post-preview";
+import StorePreview from "./store-preview";
 
 interface Props {
   metatags: {
@@ -31,7 +31,7 @@ const BlogPosts: React.FC<Props> = ({ metatags }) => {
       <Container>
         <Posts>
           {posts.map((post) => (
-            <PostPreview
+            <StorePreview
               title={post.title}
               image={post.image}
               date={post.date}

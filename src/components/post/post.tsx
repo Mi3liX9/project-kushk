@@ -2,7 +2,6 @@ import React from "react";
 import { PostProps } from "src/interfaces/post";
 import styled from "styled-components";
 import OtherPosts from "./other-posts";
-import Share from "../share/share";
 import PostTitle from "./post-title";
 
 const Post: React.FC<PostProps> = ({
@@ -20,9 +19,6 @@ const Post: React.FC<PostProps> = ({
     <PostTitle title={title} date={date} image={image} tags={tags} />
 
     <Article id="article">{children}</Article>
-    <Share title={title} text={exeprt} url={slug}>
-      <p>مشاركة</p>
-    </Share>
     <OtherPosts next={next} previous={previous} />
   </Container>
 );

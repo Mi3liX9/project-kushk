@@ -1,42 +1,23 @@
+import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import React from "react";
-import { PostProps } from "src/interfaces/post";
-import Tags from "../tag/tags";
-import {
-  getTimeDifferecne,
-  getUTC3Date,
-  useDateFormat,
-} from "src/hooks/useTimeFormat";
-interface Props extends PostProps {}
 
-const PostPreview: React.FC<Props> = ({
-  title,
-  image,
-  date,
-  tags,
-  slug,
-  exeprt,
-}) => {
-  date = getUTC3Date(date);
-  const timeDifference = getTimeDifferecne(date);
-  const isNew = timeDifference < 7;
-  const formatedDate = useDateFormat(date);
+const StorePreview: React.FC = ({ title, image, slug, exeprt }: any) => {
   return (
     <Link href={"blog/" + slug}>
       <Container href={"blog/" + slug} title={exeprt}>
         <Image src={image} draggable={false} />
         <Details className="details">
           <Title className="title">{title}</Title>
-          <Tags tags={tags} isNew={isNew} />
-          <DateText className="date">نُشرت يوم {formatedDate}</DateText>
+          {/* <Tags tags={tags} isNew={isNew} /> */}
+          {/* <DateText className="date">نُشرت يوم {formatedDate}</DateText> */}
         </Details>
       </Container>
     </Link>
   );
 };
 
-export default PostPreview;
+export default StorePreview;
 
 const Container = styled.a`
   display: flex;

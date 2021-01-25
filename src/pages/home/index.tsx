@@ -2,7 +2,6 @@ import React from "react";
 import { InferGetStaticPropsType } from "next";
 import { BlogService } from "src/blog/blog.service";
 import PostsProvider from "src/hooks/useBlog";
-import Search from "src/components/blog/blog-search";
 import BlogPosts from "src/components/blog/blog-posts";
 import { Site } from "site";
 
@@ -27,7 +26,7 @@ const Home: React.FC<Props> = ({ postData }) => {
 
   return (
     <PostsProvider original={postData}>
-      <Search />
+      {/* <Search /> */}
       <BlogPosts metatags={metatags} />
     </PostsProvider>
   );

@@ -1,6 +1,5 @@
 import { Site } from "site";
 import styled from "styled-components";
-import Icon from "../shared/icon";
 
 const Footer: React.FC = () => {
   return (
@@ -9,7 +8,7 @@ const Footer: React.FC = () => {
       <SocialMedia>
         {Site.socialMedia.reverse().map((cm) => (
           <a href={cm.url} target="_blank" style={{ height: 45 }} key={cm.name}>
-            <MyIcon src={cm.image} />
+            {/* <MyIcon src={cm.image} /> */}
           </a>
         ))}
       </SocialMedia>
@@ -36,14 +35,14 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const MyIcon = styled(Icon)`
-  border-radius: 0px;
-  transition: all 50ms linear;
-  :hover {
-    background: transparent;
-    transform: scale(1.15) rotate(3deg);
-  }
-`;
+// const MyIcon = styled(Icon)`
+//   border-radius: 0px;
+//   transition: all 50ms linear;
+//   :hover {
+//     background: transparent;
+//     transform: scale(1.15) rotate(3deg);
+//   }
+// `;
 
 const SocialMedia = styled.div`
   display: flex;
