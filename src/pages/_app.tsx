@@ -59,9 +59,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       <Container>
-        <Header />
+        {/* <Header /> */}
         <Component {...pageProps} />
-        <Footer />
+        {/* <Footer /> */}
       </Container>
     </>
   );
