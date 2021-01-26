@@ -1,40 +1,48 @@
 import React from "react";
 import { InferGetStaticPropsType } from "next";
-import { BlogService } from "src/blog/blog.service";
 import PostsProvider from "src/hooks/useBlog";
-import BlogPosts from "src/components/blog/blog-posts";
+import BlogPosts from "src/components/stores/blog-posts";
 import { Site } from "site";
+import StorePreview from "src/components/stores/store-preview";
+import { Store } from "src/models/store";
 
-interface Props extends InferGetStaticPropsType<typeof getStaticProps> {}
+const products: Store[] = [
+  { title: "Furati", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 2", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 3", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 4", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 5", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 6", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 7", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 8", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 9", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+  { title: "Test 10", photoUrl: "https://d.top4top.io/p_185160wxc1.jpg" },
+];
 
-const Home: React.FC<Props> = ({ postData }) => {
-  const metatags = [
-    { property: "description", content: Site.description },
-    // Facebook / Opengraph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: Site.url },
-    { property: "og:title", content: Site.name },
-    { property: "og:description", content: Site.description },
-    { property: "og:image", content: Site.url + Site.mainIcon },
-    // Twitter
-    { property: "twitter:card", content: "summary_large_image" },
-    { property: "twitter:url", content: Site.url },
-    { property: "twitter:title", content: Site.name },
-    { property: "twitter:description", content: Site.description },
-    { property: "twitter:image", content: Site.url + Site.mainIcon },
-  ];
+interface Props {}
 
+const Home: React.FC<Props> = () => {
   return (
-    <PostsProvider original={postData}>
+    <PostsProvider original={products}>
       {/* <Search /> */}
-      <BlogPosts metatags={metatags} />
+      {/* <BlogPosts metatags={metatags} /> */}
+      {products.map((store) => (
+        <StorePreview
+          title={store.title}
+          photoUrl={store.photoUrl}
+          categories="معجنات"
+          deliveryPrice="5"
+          distance="4"
+          rate="5"
+          meetSource=""
+          duration="15"
+        />
+      ))}
     </PostsProvider>
   );
 };
 
 export default Home;
 
-export async function getStaticProps() {
-  const blogService = new BlogService();
-  return { props: { postData: await blogService.getPosts() } };
-}
+// export async function getStaticProps() {
+// }

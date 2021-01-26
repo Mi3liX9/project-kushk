@@ -12,8 +12,6 @@ interface Props {
 }
 
 const BlogPosts: React.FC<Props> = ({ metatags }) => {
-  const { posts } = useBlog();
-
   return (
     <>
       <Head>
