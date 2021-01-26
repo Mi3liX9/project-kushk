@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-interface Props {
+export interface StorePreviewProps {
   title: string;
   photoUrl: string;
   categories: string;
@@ -13,7 +13,7 @@ interface Props {
   rate: string;
 }
 
-const StorePreview: React.FC<Props> = (store) => {
+const StorePreview: React.FC<StorePreviewProps> = (store) => {
   return (
     <Container title={store.title}>
       <Image src={store.photoUrl} draggable={false} />
@@ -35,7 +35,6 @@ const StorePreview: React.FC<Props> = (store) => {
 };
 
 export default StorePreview;
-
 const Container = styled.a`
   display: flex;
   align-items: center;
