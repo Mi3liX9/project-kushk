@@ -3,7 +3,6 @@ import { Site } from "site";
 import { useTheme } from "src/hooks/useTheme";
 import styled from "styled-components";
 import HeaderTitle from "./header-title";
-import Tab from "./tab";
 
 const Header = () => {
   const [theme, toggleTheme] = useTheme();
@@ -19,6 +18,7 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
+  width: 100vw;
   background: var(--background-secondary);
   padding: 10px;
   user-select: none;

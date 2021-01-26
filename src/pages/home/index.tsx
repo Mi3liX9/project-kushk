@@ -34,6 +34,12 @@ const Home: React.FC<Props> = () => {
       {/* <Search /> */}
       {/* <BlogPosts metatags={metatags} /> */}
       <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
+      <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
+      <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
+      <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
+      <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
+      <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
+      <StoresPreivew stores={stores} /> {/* THE LOCATION IS NOT AVAILBLE YET */}
     </PostsProvider>
   );
 };

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 const Home: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
-    router.replace("/blog");
+    router.replace("/home");
   });
 
   return <div></div>;
