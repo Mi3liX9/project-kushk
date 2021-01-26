@@ -7,34 +7,7 @@ import "../styles/globals.css";
 import { Site } from "site";
 import React from "react";
 import Footer from "src/components/footer/footer";
-
-const darkThemeFunc = `
-              (function() {
-                window.__onThemeChange = function() {};
-                function setTheme(newTheme) {
-                  window.__theme = newTheme;
-                  preferredTheme = newTheme;
-                  document.querySelector(":root").className = newTheme;
-                  localStorage.setItem('theme', newTheme);
-                  window.__onThemeChange(newTheme);
-                }
-                var preferredTheme;
-                try {
-                  preferredTheme = localStorage.getItem('theme');
-                } catch (err) { }
-                window.__setPreferredTheme = function(newTheme) {
-                  setTheme(newTheme);
-                  try {
-                    localStorage.setItem('theme', newTheme);
-                  } catch (err) {}
-                }
-                var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                darkQuery.addListener(function(e) {
-                  window.__setPreferredTheme(e.matches ? 'dark' : 'light')
-                });
-                setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
-              })();
-            `;
+import { darkThemeFunc } from "src/utils/dark-theme.function";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -59,7 +32,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       <Container>
-        {/* <Header /> */}
+        <Header />
         <Component {...pageProps} />
         {/* <Footer /> */}
       </Container>
@@ -72,7 +45,6 @@ export default MyApp;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5px 0px;
   gap: 10px;
   min-height: 100vh;
 
