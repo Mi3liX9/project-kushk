@@ -10,11 +10,6 @@ const StoresPreivew: React.FC<{ stores: StorePreviewProps[] }> = (props) => {
           title={store.title}
           photoUrl={store.photoUrl}
           categories={store.categories}
-          deliveryPrice="15"
-          distance="4"
-          rate={(store.rate as unknown) as string}
-          meetSource={store.meetSource}
-          duration={store.duration}
           key={store.title} // Then it should be id;
         />
       ))}
@@ -26,6 +21,6 @@ export default StoresPreivew;
 
 const Container = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 2px;
   flex-direction: column;
 `;

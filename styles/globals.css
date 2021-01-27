@@ -28,8 +28,8 @@ a {
   --placeholder-color: #909090;
 
   /* main colors */
-  --color-primary: #2d9cdb;
-  --highlight-color: rgba(86, 204, 242, 0.5);
+  --color-primary: #dbc12d;
+  /* --highlight-color: rgba(86, 204, 242, 0.5); */
 }
 
 :root.dark {
@@ -41,8 +41,9 @@ a {
   --background-icon: rgba(255, 255, 255, 0.1);
   --input-backround: #303030;
   --blockquote-backgorund: rgba(0, 0, 0, 0.3);
-
+  --background-test: yellow;
   --highlight-color: rgba(86, 204, 242, 0.2);
+  --color-primary: #dbc12d;
 
   /* text */
   --text-color-primary: white;

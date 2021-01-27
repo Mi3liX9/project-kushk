@@ -33,7 +33,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
       <Container>
         <Header />
-        <Component {...pageProps} />
+        <Body>
+          <Component {...pageProps} />
+        </Body>
         {/* <Footer /> */}
       </Container>
     </>
@@ -51,4 +53,8 @@ const Container = styled.div`
   /* @media (min-width: 1024px) and (orientation: landscape) {
     padding: 5px 20%;
   } */
+`;
+
+const Body = styled.div`
+  /* background: var(--background-secondary); */
 `;

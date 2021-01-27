@@ -6,11 +6,6 @@ export interface StorePreviewProps {
   title: string;
   photoUrl: string;
   categories: string;
-  deliveryPrice: string;
-  duration: string;
-  meetSource: string;
-  distance: string;
-  rate: string;
 }
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => {
@@ -18,17 +13,8 @@ const StorePreview: React.FC<StorePreviewProps> = (store) => {
     <Container title={store.title}>
       <Image src={store.photoUrl} draggable={false} />
       <Information className="details">
-        <Text className="title">{store.title}</Text>
-        <Text className="cateories">{store.categories}</Text>
-        {store.deliveryPrice ? (
-          <Text>{store.deliveryPrice} ريال</Text>
-        ) : (
-          <Text>استلام فقط</Text>
-        )}
-        <Text>{store.duration} دقيقة</Text>
-        <Text>{store.distance} كيلو</Text>
-        <Text>مصدر اللحوم: {store.meetSource}</Text>
-        <Text>التقييم: {store.rate}</Text>
+        <Text id="title">{store.title}</Text>
+        <Text id="cateories">{store.categories}</Text>
       </Information>
     </Container>
   );
@@ -37,16 +23,17 @@ const StorePreview: React.FC<StorePreviewProps> = (store) => {
 export default StorePreview;
 const Container = styled.a`
   display: flex;
+  background: var(--background-secondary);
   align-items: center;
-  width: 100%;
   padding: 1rem 0.4rem;
   gap: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   user-select: none;
   cursor: pointer;
 
   :hover {
-    background: var(--background-icon);
+    background: var(--color-primary);
+
     p {
       opacity: 1;
     }
@@ -54,19 +41,19 @@ const Container = styled.a`
 `;
 
 const Information = styled.div`
-  display: grid;
-  gap: 15px 10vw;
-  grid-template-columns: auto auto auto;
+  display: flex;
+  gap: 15px 10px;
+  flex-wrap: wrap;
 
-  .title {
+  #title {
     font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 3px;
+    font-weight: 600;
+    margin-bottom: 1px;
   }
 
-  .title,
-  .cateories {
-    grid-column: 1 / -1;
+  #title,
+  #cateories {
+    flex-basis: 100%;
   }
 `;
 
@@ -81,6 +68,7 @@ const Image = styled.img`
 const Text = styled.p`
   margin: 0;
   font-size: 0.9rem;
-  line-height: 0.6;
+  line-height: 1;
   opacity: 0.8;
+  flex-basis: 30%;
 `;
