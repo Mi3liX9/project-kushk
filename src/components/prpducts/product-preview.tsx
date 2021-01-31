@@ -1,46 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import ListItem from "../list/list-item";
 
-interface Props {
+export interface ProductProps {
   title: string;
   descreption?: string;
   price: string;
   photo?: string;
 }
 
-const Product: React.FC<Props> = (product) => {
+const Product: React.FC<ProductProps> = (product) => {
   return (
-    <Container>
+    <ListItem>
       {product.photo ? <Image src={product.photo} /> : null}
       <Information>
         <Title>{product.title}</Title>
         {product.descreption ? <Text>{product.descreption}</Text> : null}
         <Text>{product.price} ريال</Text>
       </Information>
-    </Container>
+    </ListItem>
   );
 };
 
 export default Product;
-
-const Container = styled.a`
-  display: flex;
-  background: var(--background-secondary);
-  align-items: center;
-  padding: 1rem;
-  gap: 10px;
-  border-radius: 20px;
-  user-select: none;
-  cursor: pointer;
-
-  :hover {
-    background: var(--color-main);
-
-    p {
-      opacity: 1;
-    }
-  }
-`;
 
 const Information = styled.div`
   display: flex;

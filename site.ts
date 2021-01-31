@@ -6,7 +6,7 @@ export interface Metatags {
 
 export class Site {
   static siteName = "كشك";
-  static mainIcon = "/icons/kiosk-icon.jpg";
+  static mainIcon = "/icons/kiosk-icon.png";
   static description = "MiGHTY 3li's new website";
   static url =
     process.env.NODE_ENV === "development"

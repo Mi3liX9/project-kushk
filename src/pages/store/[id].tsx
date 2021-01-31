@@ -1,5 +1,7 @@
 import React from "react";
-import Product from "src/components/prpducts/product";
+import List from "src/components/list/list";
+import Product from "src/components/prpducts/product-preview";
+import ProductsPreivew from "src/components/prpducts/products-preview";
 import styled from "styled-components";
 
 type ProductType = { title: string; price: string };
@@ -12,20 +14,7 @@ const products: ProductType[] = [
 ];
 
 const StorePage = () => {
-  return (
-    <Container>
-      {products.map((product) => (
-        <Product title={product.title} price={product.price} />
-      ))}
-    </Container>
-  );
+  return <ProductsPreivew products={products} />;
 };
 
 export default StorePage;
-
-const Container = styled.div`
-  padding: 0 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
