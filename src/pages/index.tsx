@@ -4,7 +4,7 @@ import { useEffect } from "react";
 const Home: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
-    router.replace("/home");
+    router.replace("/near");
   });
 
   return <div></div>;

@@ -10,29 +10,32 @@ export interface StorePreviewProps {
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => {
   return (
-    <Container title={store.title}>
-      <Image src={store.photoUrl} draggable={false} />
-      <Information className="details">
-        <Text id="title">{store.title}</Text>
-        <Text id="cateories">{store.categories}</Text>
-      </Information>
-    </Container>
+    <Link href="/store/1">
+      <Container title={store.title}>
+        <Image src={store.photoUrl} draggable={false} />
+        <Information className="details">
+          <Text id="title">{store.title}</Text>
+          <Text id="cateories">{store.categories}</Text>
+        </Information>
+      </Container>
+    </Link>
   );
 };
 
 export default StorePreview;
+
 const Container = styled.a`
   display: flex;
   background: var(--background-secondary);
   align-items: center;
-  padding: 1rem 0.4rem;
+  padding: 1rem;
   gap: 10px;
   border-radius: 20px;
   user-select: none;
   cursor: pointer;
 
   :hover {
-    background: var(--color-primary);
+    background: var(--color-main);
 
     p {
       opacity: 1;

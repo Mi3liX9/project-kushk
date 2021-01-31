@@ -49,12 +49,9 @@ const Container = styled.div`
   flex-direction: column;
   gap: 10px;
   min-height: 100vh;
-
-  /* @media (min-width: 1024px) and (orientation: landscape) {
-    padding: 5px 20%;
-  } */
+  align-items: center;
 `;
 
 const Body = styled.div`
-  /* background: var(--background-secondary); */
+  width: min(100vw, 700px);
 `;

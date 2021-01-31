@@ -18,56 +18,36 @@ a {
 * {
   box-sizing: border-box;
   transition: all 150ms linear;
-  color: var(--text-color-primary);
+  color: var(--text-color);
   font-family: "Tajawal";
   -webkit-tap-highlight-color: transparent;
 }
 
-*::selection {
+/* *::selection {
   background: var(--highlight-color);
-}
+} */
 
-input {
+/* input {
   height: 40px;
   width: 150px;
   border: 0;
   background: var(--input-backround);
   padding: 10px;
 }
-
-input::placeholder {
+ */
+/* input::placeholder {
   color: var(--placeholder-color);
-}
+} */
 
 :root {
-  /* background */
   --background-primary: #f2f2f2;
   --background-secondary: white;
-  --background-icon: rgba(0, 0, 0, 0.1);
-  --input-backround: #f2f2f2;
-  --blockquote-backgorund: rgba(0, 0, 0, 0.1);
-  /* text */
-  --text-color-primary: #202020;
-  --placeholder-color: #909090;
-
-  /* main colors */
-  --color-primary: #2d9cdb;
-  --highlight-color: rgba(86, 204, 242, 0.5);
+  --color-main: #0072ff;
+  --text-color: #202020;
 }
 
 :root.dark {
-  /* background */
-
   --background-primary: black;
   --background-secondary: #202020;
-  --background-article: #303030;
-  --background-icon: rgba(255, 255, 255, 0.1);
-  --input-backround: #303030;
-  --blockquote-backgorund: rgba(0, 0, 0, 0.3);
-
-  --highlight-color: rgba(86, 204, 242, 0.2);
-
-  /* text */
-  --text-color-primary: white;
-  --placeholder-color: rgba(255, 255, 255, 0.6);
+  --text-color: white;
 }
