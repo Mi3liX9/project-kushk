@@ -8,7 +8,7 @@ interface Props {
 
 const StoresPreivew: React.FC<Props> = ({ stores }) => {
   return (
-    <List>
+    <List requiresImage={true}>
       {stores.map((store) => (
         <StorePreview
           title={store.title}

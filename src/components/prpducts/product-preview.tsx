@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ListItem from "../list/list-item";
 
 export interface ProductProps {
+  id: string;
   title: string;
   descreption?: string;
   price: string;

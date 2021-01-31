@@ -1,4 +1,5 @@
 export class Store {
+  id: string;
   title: string;
 
   photoUrl: string;

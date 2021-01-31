@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ListItem from "../list/list-item";
 
 export interface StorePreviewProps {
+  id: string;
   title: string;
   photoUrl: string;
   categories: string;
@@ -11,7 +12,7 @@ export interface StorePreviewProps {
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => {
   return (
-    <Link href="/store/1">
+    <Link href={"/stores/" + store.id}>
       <a>
         <ListItem icon={store.photoUrl}>
           <Information>

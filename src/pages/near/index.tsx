@@ -1,88 +1,46 @@
 import React from "react";
 import PostsProvider from "src/hooks/useBlog";
-import { Store } from "src/models/store";
 import StoresPreivew from "src/components/stores/stores-preview";
+
+type Store = {
+  id: string;
+  title: String;
+  photoUrl?: string;
+  categories: string;
+};
 
 const stores: Store[] = [
   {
+    id: "1",
     title: " مطعم الفراتي",
     photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
     categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "15",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
   },
   {
+    id: "1",
     title: "مطعم التنور",
     photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
     categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "10",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 4.5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
   },
   {
-    title: " مطعم الفراتي",
-    photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
+    id: "1",
+    title: "زهرة الخلد",
     categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "15",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
   },
   {
-    title: "مطعم التنور",
-    photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
+    id: "1",
+    title: "سمبوسة أبو صالح",
     categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "10",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 4.5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
   },
   {
-    title: " مطعم الفراتي",
-    photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
+    id: "1",
+    title: "بيزا ريم",
     categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "15",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
   },
   {
-    title: "مطعم التنور",
-    photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
+    id: "1",
+    title: "أطايب القطيف",
     categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "10",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 4.5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
-  },
-  {
-    title: " مطعم الفراتي",
-    photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "15",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
-  },
-  {
-    title: "مطعم التنور",
-    photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-    duration: "10",
-    meetSource: "ملحمة",
-    onlineOnly: false,
-    rate: 4.5,
-    location: [{ latitude: "26.5555908", longitude: "50.0326787" }],
   },
 ];
 

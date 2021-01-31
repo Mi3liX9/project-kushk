@@ -1,15 +1,19 @@
 import React from "react";
+import { Site } from "site";
 import styled from "styled-components";
 
 interface Props {
-  icon?: string;
+  icon: string;
   iconRadius?: string;
 }
 
 const ListItem: React.FC<Props> = ({ children, icon, iconRadius }) => {
   return (
     <Item>
-      {icon ? <Icon src={icon} iconRadius={iconRadius} /> : null}
+      <Icon
+        src={icon ?? "/icons/Kushk-Logo-Orange.png"}
+        iconRadius={iconRadius}
+      />
       <Children>{children}</Children>
     </Item>
   );
