@@ -4,7 +4,7 @@ import StoresPreivew from "src/components/stores/stores-preview";
 
 type Store = {
   id: string;
-  title: String;
+  title: string;
   photoUrl?: string;
   categories: string;
 };
@@ -16,32 +16,32 @@ const stores: Store[] = [
     photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
     categories: "معجنات، شاورما، فطائر، سندويشات",
   },
-  {
-    id: "1",
-    title: "مطعم التنور",
-    photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-  },
-  {
-    id: "1",
-    title: "زهرة الخلد",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-  },
-  {
-    id: "1",
-    title: "سمبوسة أبو صالح",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-  },
-  {
-    id: "1",
-    title: "بيزا ريم",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-  },
-  {
-    id: "1",
-    title: "أطايب القطيف",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
-  },
+  // {
+  //   id: "1",
+  //   title: "مطعم التنور",
+  //   photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
+  //   categories: "معجنات، شاورما، فطائر، سندويشات",
+  // },
+  // {
+  //   id: "1",
+  //   title: "زهرة الخلد",
+  //   categories: "معجنات، شاورما، فطائر، سندويشات",
+  // },
+  // {
+  //   id: "1",
+  //   title: "سمبوسة أبو صالح",
+  //   categories: "معجنات، شاورما، فطائر، سندويشات",
+  // },
+  // {
+  //   id: "1",
+  //   title: "بيزا ريم",
+  //   categories: "معجنات، شاورما، فطائر، سندويشات",
+  // },
+  // {
+  //   id: "1",
+  //   title: "أطايب القطيف",
+  //   categories: "معجنات، شاورما، فطائر، سندويشات",
+  // },
 ];
 
 interface Props {}
@@ -49,9 +49,7 @@ interface Props {}
 const Home: React.FC<Props> = () => {
   return (
     <PostsProvider original={stores}>
-      {/* <Search /> */}
-      {/* <BlogPosts metatags={metatags} /> */}
-      <StoresPreivew stores={stores} />
+      <StoresPreivew stores={stores as any} />
     </PostsProvider>
   );
 };

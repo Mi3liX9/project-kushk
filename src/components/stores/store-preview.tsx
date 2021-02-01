@@ -11,6 +11,7 @@ export interface StorePreviewProps {
 }
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => {
+  console.log(store);
   return (
     <Link href={"/stores/" + store.id}>
       <a>

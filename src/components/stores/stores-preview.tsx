@@ -10,12 +10,7 @@ const StoresPreivew: React.FC<Props> = ({ stores }) => {
   return (
     <List requiresImage={true}>
       {stores.map((store) => (
-        <StorePreview
-          title={store.title}
-          photoUrl={store.photoUrl}
-          categories={store.categories}
-          key={store.id}
-        />
+        <StorePreview {...store} key={store.id} />
       ))}
     </List>
   );
