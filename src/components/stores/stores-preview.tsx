@@ -15,6 +15,10 @@ const StoresPreivew: React.FC<Props> = ({ stores: defaultStores }) => {
   const router = useRouter();
 
   useEffect(() => {
+    router.replace("/near#");
+  }, []);
+
+  useEffect(() => {
     const words = value.split(" ");
     const filteredStores = defaultStores.filter(
       (store) =>

@@ -7,7 +7,7 @@ interface Props {
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Category: React.FC<Props> = ({ title, onClick, children }) => {
+const Category: React.FC<Props> = ({ title = "", onClick, children }) => {
   return (
     <li id={title}>
       <Link href={"#" + title} replace>
