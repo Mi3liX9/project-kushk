@@ -3,7 +3,7 @@ import { Site } from "site";
 import styled from "styled-components";
 
 interface Props {
-  icon: string;
+  icon?: string;
   iconRadius?: string;
 }
 

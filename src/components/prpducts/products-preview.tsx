@@ -9,7 +9,12 @@ interface Props {
 const ProductsPreivew: React.FC<Props> = ({ products }) => (
   <List>
     {products.map((product) => (
-      <Product title={product.title} price={product.price} key={product.id} />
+      <Product
+        id={product.id}
+        title={product.title}
+        price={product.price}
+        key={product.id}
+      />
     ))}
   </List>
 );
