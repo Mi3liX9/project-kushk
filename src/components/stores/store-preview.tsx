@@ -7,7 +7,7 @@ export interface StorePreviewProps {
   id: string;
   title: string;
   photoUrl: string;
-  categories: string;
+  categories: string[];
 }
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => (
@@ -16,7 +16,9 @@ const StorePreview: React.FC<StorePreviewProps> = (store) => (
       <ListItem icon={store.photoUrl}>
         <Information>
           <Title id="title">{store.title}</Title>
-          <Categories id="cateories">{store.categories}</Categories>
+          <Categories id="cateories">
+            {store.categories.map((c) => c + " ")}
+          </Categories>
         </Information>
       </ListItem>
     </a>

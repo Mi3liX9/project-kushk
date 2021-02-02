@@ -1,13 +1,11 @@
 import React from "react";
 import StoresPreivew from "src/components/stores/stores-preview";
-import Input from "src/components/input/input";
-import styled from "styled-components";
 
 type Store = {
   id: string;
   title: string;
   photoUrl?: string;
-  categories: string;
+  categories: string[];
 };
 
 const stores: Store[] = [
@@ -15,33 +13,38 @@ const stores: Store[] = [
     id: "1",
     title: " مطعم الفراتي",
     photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
+    categories: ["معجنات"],
   },
   {
-    id: "1",
+    id: "6",
     title: "مطعم التنور",
     photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: "معجنات، فطائر، ",
+    categories: ["لحوم"],
   },
   {
     id: "2",
     title: "زهرة الخلد",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
+    categories: ["شاورما"],
   },
   {
     id: "3",
     title: "سمبوسة أبو صالح",
-    categories: "شاورما، فطائر",
+    categories: ["ساندويتشات"],
   },
   {
     id: "4",
     title: "بيزا ريم",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
+    categories: ["بيتزا"],
   },
   {
     id: "5",
     title: "أطايب القطيف",
-    categories: " شاورما، فطائر، سندويشات",
+    categories: ["شاورما", "ساندويتشات"],
+  },
+  {
+    id: "7",
+    title: "مطعم مايني المقدس",
+    categories: ["شاورما", "مادري"],
   },
 ];
 
