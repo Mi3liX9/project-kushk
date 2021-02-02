@@ -27,22 +27,11 @@ a {
   background: var(--highlight-color);
 } */
 
-/* input {
-  height: 40px;
-  width: 150px;
-  border: 0;
-  background: var(--input-backround);
-  padding: 10px;
-}
- */
-/* input::placeholder {
-  color: var(--placeholder-color);
-} */
-
 :root {
   --background-primary: #f2f2f2;
   --background-secondary: white;
   --color-main: #0072ff;
+  --color-secomdary: rgb(0, 114, 255, 0.9);
   --text-color: #202020;
 }
 

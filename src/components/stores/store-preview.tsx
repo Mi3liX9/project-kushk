@@ -10,21 +10,18 @@ export interface StorePreviewProps {
   categories: string;
 }
 
-const StorePreview: React.FC<StorePreviewProps> = (store) => {
-  console.log(store);
-  return (
-    <Link href={"/stores/" + store.id}>
-      <a>
-        <ListItem icon={store.photoUrl}>
-          <Information>
-            <Title id="title">{store.title}</Title>
-            <Categories id="cateories">{store.categories}</Categories>
-          </Information>
-        </ListItem>
-      </a>
-    </Link>
-  );
-};
+const StorePreview: React.FC<StorePreviewProps> = (store) => (
+  <Link href={"/stores/" + store.id}>
+    <a>
+      <ListItem icon={store.photoUrl}>
+        <Information>
+          <Title id="title">{store.title}</Title>
+          <Categories id="cateories">{store.categories}</Categories>
+        </Information>
+      </ListItem>
+    </a>
+  </Link>
+);
 
 export default StorePreview;
 

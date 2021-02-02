@@ -1,6 +1,7 @@
 import React from "react";
-import PostsProvider from "src/hooks/useBlog";
 import StoresPreivew from "src/components/stores/stores-preview";
+import Input from "src/components/input/input";
+import styled from "styled-components";
 
 type Store = {
   id: string;
@@ -20,7 +21,7 @@ const stores: Store[] = [
     id: "1",
     title: "مطعم التنور",
     photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
+    categories: "معجنات، فطائر، ",
   },
   {
     id: "2",
@@ -30,7 +31,7 @@ const stores: Store[] = [
   {
     id: "3",
     title: "سمبوسة أبو صالح",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
+    categories: "شاورما، فطائر",
   },
   {
     id: "4",
@@ -40,18 +41,14 @@ const stores: Store[] = [
   {
     id: "5",
     title: "أطايب القطيف",
-    categories: "معجنات، شاورما، فطائر، سندويشات",
+    categories: " شاورما، فطائر، سندويشات",
   },
 ];
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
-  return (
-    <PostsProvider original={stores}>
-      <StoresPreivew stores={stores as any} />
-    </PostsProvider>
-  );
+  return <StoresPreivew stores={stores as any} />;
 };
 
 export default Home;
