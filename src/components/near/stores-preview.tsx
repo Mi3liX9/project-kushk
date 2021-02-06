@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useStores } from "src/hooks/useStores";
-import List from "../list/list";
-import SearchBar from "../searchbar/search-bar";
+import List from "../shared/list/list";
+import SearchBar from "../shared/searchbar/search-bar";
 import StorePreview from "./store-preview";
 
 const StoresPreivew: React.FC = ({}) => {

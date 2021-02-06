@@ -1,5 +1,5 @@
 import React from "react";
-import StoresPreivew from "src/components/stores/stores-preview";
+import StoresPreivew from "src/components/near/stores-preview";
 import StoresProvider, { IStores } from "src/hooks/useStores";
 
 const stores: IStores = [

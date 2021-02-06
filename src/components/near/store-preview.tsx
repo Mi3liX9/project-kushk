@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import ListItem from "../list/list-item";
+import ListItem from "../shared/list/list-item";
 
 export interface StorePreviewProps {
   id: string;

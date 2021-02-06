@@ -1,5 +1,5 @@
 import React from "react";
-import ProductsPreivew from "src/components/prpducts/products-preview";
+import ProductsPreivew from "src/components/stores/products-preview";
 
 type ProductType = { id: string; title: string; price: string };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import List from "../list/list";
+import List from "../shared/list/list";
 import Product, { ProductProps } from "./product-preview";
 
 interface Props {

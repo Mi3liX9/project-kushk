@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ListItem from "../list/list-item";
+import ListItem from "../shared/list/list-item";
 
 export interface ProductProps {
   id: string;

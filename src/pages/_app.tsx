@@ -1,12 +1,12 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import Head from "next/head";
 import styled from "styled-components";
-import Header from "src/components/header/header";
+import Header from "src/components/app/header/header";
 
 import "../styles/globals.css";
 import { Site } from "site";
 import React from "react";
-import Footer from "src/components/footer/footer";
+import Footer from "src/components/app/footer/footer";
 import { darkThemeFunc } from "src/utils/dark-theme.function";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
