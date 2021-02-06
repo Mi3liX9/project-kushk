@@ -1,57 +1,55 @@
 import React from "react";
 import StoresPreivew from "src/components/stores/stores-preview";
+import StoresProvider, { IStores } from "src/hooks/useStores";
 
-type Store = {
-  id: string;
-  title: string;
-  photoUrl?: string;
-  categories: string[];
-};
-
-const stores: Store[] = [
+const stores: IStores = [
   {
     id: "1",
     title: " مطعم الفراتي",
     photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
-    categories: ["معجنات"],
+    categories: ["test6"],
   },
   {
     id: "6",
     title: "مطعم التنور",
     photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: ["لحوم"],
+    categories: ["test6"],
   },
   {
     id: "2",
     title: "زهرة الخلد",
-    categories: ["شاورما"],
+    categories: ["test1"],
   },
   {
     id: "3",
     title: "سمبوسة أبو صالح",
-    categories: ["ساندويتشات"],
+    categories: ["test2"],
   },
   {
     id: "4",
     title: "بيزا ريم",
-    categories: ["بيتزا"],
+    categories: ["test3"],
   },
   {
     id: "5",
     title: "أطايب القطيف",
-    categories: ["شاورما", "ساندويتشات"],
+    categories: ["test4", "test3"],
   },
   {
     id: "7",
     title: "مطعم مايني المقدس",
-    categories: ["شاورما", "مادري"],
+    categories: ["test6", "test5"],
   },
 ];
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
-  return <StoresPreivew stores={stores as any} />;
+  return (
+    <StoresProvider stores={stores}>
+      <StoresPreivew />
+    </StoresProvider>
+  );
 };
 
 export default Home;

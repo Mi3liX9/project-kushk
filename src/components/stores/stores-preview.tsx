@@ -1,37 +1,29 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useStores } from "src/hooks/useStores";
 import List from "../list/list";
 import SearchBar from "../searchbar/search-bar";
-import StorePreview, { StorePreviewProps } from "./store-preview";
+import StorePreview from "./store-preview";
 
-interface Props {
-  stores: StorePreviewProps[];
-}
-
-const StoresPreivew: React.FC<Props> = ({ stores: defaultStores }) => {
-  const [stores, setStores] = useState(defaultStores);
+const StoresPreivew: React.FC = ({}) => {
+  const { stores, setStores, defaultStores } = useStores();
   const [value, setValue] = useState("");
-  const [category, setCategory] = useState("");
-  const router = useRouter();
+  // const [category, setCategory] = useState("");
+  // const router = useRouter();
 
-  useEffect(() => {
-    router.replace("/near#");
-  }, []);
+  // useEffect(() => {
+  //   router.replace("/near#");
+  // }, []);
 
-  useEffect(() => {
-    const words = value.split(" ");
-    const filteredStores = defaultStores.filter(
-      (store) =>
-        words.every((word) => store.title.includes(word)) &&
-        (category === "" ? true : store.categories.includes(category))
-    );
-    setStores(filteredStores);
-  }, [value, category, defaultStores]);
-
-  useEffect(() => {
-    const path = decodeURI(router.asPath).split("#")[1];
-    setCategory(path);
-  }, [router]);
+  // useEffect(() => {
+  //   const words = value.split(" ");
+  //   const filteredStores = defaultStores.filter(
+  //     (store) =>
+  //       words.every((word) => store.title.includes(word)) &&
+  //       (category === "" ? true : store.categories.includes(category))
+  //   );
+  //   setStores(filteredStores);
+  // }, [value, category, defaultStores]);
 
   const myCategories = new Set<string>();
   defaultStores.forEach((s) =>
@@ -39,14 +31,14 @@ const StoresPreivew: React.FC<Props> = ({ stores: defaultStores }) => {
   );
 
   return (
-    <List requiresImage={true}>
+    <List requiresImage>
       <SearchBar
         value={value}
         onChange={(e) => setValue(e.target.value)}
         categories={[...myCategories]}
       />
       {stores.map((store) => (
-        <StorePreview {...store} key={store.id} />
+        <StorePreview {...(store as any)} key={store.id} />
       ))}
     </List>
   );

@@ -9,12 +9,12 @@ interface Props {
 
 const Category: React.FC<Props> = ({ title = "", onClick, children }) => {
   return (
-    <li id={title}>
-      <Link href={"#" + title} replace>
-        <a>
-          <Conainer onClick={onClick}>{children ?? title}</Conainer>
-        </a>
-      </Link>
+    <li>
+      <a href={"#" + title}>
+        <Conainer id={title} onClick={onClick}>
+          {children ?? title}
+        </Conainer>
+      </a>
     </li>
   );
 };
