@@ -24,17 +24,8 @@ const StorePage = () => {
           والسلام عليكم ورحمة الله وبركاته
         </p>
       </StoreInfo>
-      <div>
-        <H2>قائمة الوجبات</H2>
-        <Categories
-          categories={[
-            { title: "test", key: "test" },
-            { title: "test1", key: "test1" },
-            { title: "test2", key: "test2" },
-          ]}
-        />
-        <ProductsPreivew products={products} />
-      </div>
+      <H2>قائمة الوجبات</H2>
+      <ProductsPreivew products={products} />
     </Container>
   );
 };

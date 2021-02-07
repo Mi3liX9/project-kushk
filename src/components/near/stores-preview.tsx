@@ -32,11 +32,11 @@ const StoresPreivew: React.FC = ({}) => {
 
   return (
     <List requiresImage>
-      <SearchBar
+      {/* <SearchBar
         value={value}
         onChange={(e) => setValue(e.target.value)}
         categories={[]}
-      />
+      /> */}
       {stores.map((store) => (
         <StorePreview {...(store as any)} key={store.id} />
       ))}

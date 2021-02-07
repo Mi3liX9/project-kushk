@@ -1,18 +1,15 @@
 import { Category } from "./Category";
-import { Product } from "./Product";
 
-export class Store {
+export class Product {
   id: string;
-
-  type: string;
 
   title: string;
 
-  icon: string;
-
   description?: string;
 
-  products: Product[];
+  images: string[];
 
   categories: Category[];
+
+  price: number;
 }

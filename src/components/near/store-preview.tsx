@@ -7,7 +7,7 @@ export interface StorePreviewProps {
   id: string;
   title: string;
   photoUrl: string;
-  categories: string[];
+  categories: { title: string; key: string }[];
 }
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => (
@@ -17,7 +17,7 @@ const StorePreview: React.FC<StorePreviewProps> = (store) => (
         <Information>
           <Title id="title">{store.title}</Title>
           <Categories id="cateories">
-            {store.categories.map((c) => c + " ")}
+            {store.categories.map((c) => c.title + " ")}
           </Categories>
         </Information>
       </ListItem>
