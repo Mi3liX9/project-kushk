@@ -6,7 +6,7 @@ import Search from "../input/search";
 interface Props {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  categories?: string[];
+  categories?: { title: string; key: string }[];
 }
 
 const SearchBar: React.FC<Props> = ({ categories, value, onChange }) => {

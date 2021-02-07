@@ -7,38 +7,38 @@ const stores: IStores = [
     id: "1",
     title: " مطعم الفراتي",
     photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
-    categories: ["test6"],
+    categories: [{ title: "معجانات", key: "tset1" }],
   },
   {
     id: "6",
     title: "مطعم التنور",
     photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: ["test6"],
+    categories: [{ title: "معجنات", key: "tset1" }],
   },
   {
     id: "2",
     title: "زهرة الخلد",
-    categories: ["test1"],
+    categories: [{ title: "معجنات", key: "test1" }],
   },
   {
     id: "3",
     title: "سمبوسة أبو صالح",
-    categories: ["test2"],
+    categories: [{ title: "test2", key: "tset2" }],
   },
   {
     id: "4",
     title: "بيزا ريم",
-    categories: ["test3"],
+    categories: [{ title: "test3", key: "tset3" }],
   },
   {
     id: "5",
     title: "أطايب القطيف",
-    categories: ["test4", "test3"],
+    categories: [{ title: "test4", key: "tset4" }],
   },
   {
     id: "7",
     title: "مطعم مايني المقدس",
-    categories: ["test6", "test5"],
+    categories: [{ title: "test5", key: "tset5" }],
   },
 ];
 

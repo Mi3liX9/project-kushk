@@ -25,17 +25,17 @@ const StoresPreivew: React.FC = ({}) => {
   //   setStores(filteredStores);
   // }, [value, category, defaultStores]);
 
-  const myCategories = new Set<string>();
-  defaultStores.forEach((s) =>
-    s.categories.forEach((s) => myCategories.add(s))
-  );
+  // const myCategories = new Set<{ title: string; key: string }>();
+  // defaultStores.forEach((s) =>
+  //   s.categories.forEach((s) => myCategories.add(s))
+  // );
 
   return (
     <List requiresImage>
       <SearchBar
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        categories={[...myCategories]}
+        categories={[]}
       />
       {stores.map((store) => (
         <StorePreview {...(store as any)} key={store.id} />

@@ -3,15 +3,15 @@ import styled from "styled-components";
 import Category from "./category";
 
 interface Props {
-  categories: string[];
+  categories: { title: string; key: string }[];
 }
 
 const Categories: React.FC<Props> = ({ categories }) => {
   return (
     <Container>
-      <Category>الكل</Category>
+      <Category title="الكل" key="all" />
       {categories.map((category) => (
-        <Category title={category} key={category} />
+        <Category title={category.title} key={category.key} />
       ))}
     </Container>
   );

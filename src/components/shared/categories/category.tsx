@@ -3,16 +3,17 @@ import React from "react";
 import styled from "styled-components";
 
 interface Props {
-  title?: string;
+  title: string;
+  key: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Category: React.FC<Props> = ({ title = "", onClick, children }) => {
+const Category: React.FC<Props> = ({ title, onClick, children, key }) => {
   return (
     <li>
-      <a href={"#" + title}>
-        <Conainer id={title} onClick={onClick}>
-          {children ?? title}
+      <a href={"#" + key}>
+        <Conainer id={key} onClick={onClick}>
+          {title}
         </Conainer>
       </a>
     </li>

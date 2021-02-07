@@ -10,7 +10,7 @@ export type StoreType = {
   id: string;
   title: string;
   photoUrl?: string;
-  categories: string[];
+  categories: { title: string; key: string }[];
 };
 
 export type IStores = StoreType[];
