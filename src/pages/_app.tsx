@@ -54,4 +54,6 @@ const Container = styled.div`
 
 const Body = styled.div`
   width: min(100vw, 700px);
+  padding: 0 5px;
+  padding-bottom: 50px;
 `;

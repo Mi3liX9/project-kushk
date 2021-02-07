@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Categories from "../../near/categories/categories";
+import Categories from "../categories/categories";
 import Search from "../input/search";
 
 interface Props {

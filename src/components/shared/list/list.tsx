@@ -5,7 +5,7 @@ const List = styled.ul<{ requiresImage?: boolean }>`
   display: flex;
   gap: 5px;
   flex-direction: column;
-  padding: 0 5px;
+  padding: 0;
   margin: 0;
 
   li img {
