@@ -38,7 +38,7 @@ const StoresPreivew: React.FC = ({}) => {
         categories={[]}
       /> */}
       {stores.map((store) => (
-        <StorePreview {...(store as any)} key={store.id} />
+        <StorePreview {...store} key={store.id} />
       ))}
     </List>
   );

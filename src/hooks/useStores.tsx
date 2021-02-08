@@ -5,24 +5,16 @@ import {
   useContext,
   useState,
 } from "react";
-
-export type StoreType = {
-  id: string;
-  title: string;
-  photoUrl?: string;
-  categories: { title: string; key: string }[];
-};
-
-export type IStores = StoreType[];
+import { Store } from "src/models/store";
 
 type IStoreContext = {
-  defaultStores: IStores;
-  stores: IStores;
-  setStores: Dispatch<SetStateAction<IStores>>;
+  defaultStores: Store[];
+  stores: Store[];
+  setStores: Dispatch<SetStateAction<Store[]>>;
 };
 
 interface Props {
-  stores: IStores;
+  stores: Store[];
 }
 
 export const StoresContext = createContext<IStoreContext>({

@@ -2,18 +2,14 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import ListItem from "../shared/list/list-item";
+import { Store } from "src/models/store";
 
-export interface StorePreviewProps {
-  id: string;
-  title: string;
-  photoUrl: string;
-  categories: { title: string; key: string }[];
-}
+export interface StorePreviewProps extends Store {}
 
 const StorePreview: React.FC<StorePreviewProps> = (store) => (
   <Link href={"/stores/" + store.id}>
     <a>
-      <ListItem icon={store.photoUrl}>
+      <ListItem icon={store.icon}>
         <Information>
           <Title id="title">{store.title}</Title>
           <Categories id="cateories">

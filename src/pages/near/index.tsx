@@ -1,50 +1,26 @@
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import React from "react";
 import StoresPreivew from "src/components/near/stores-preview";
-import StoresProvider, { IStores } from "src/hooks/useStores";
+import StoresProvider from "src/hooks/useStores";
+import { Store } from "src/models/store";
 
-const stores: IStores = [
+const initialStores: Store[] = [
   {
-    id: "1",
-    title: " مطعم الفراتي",
-    photoUrl: "https://d.top4top.io/p_185160wxc1.jpg",
-    categories: [{ title: "معجانات", key: "tset1" }],
-  },
-  {
-    id: "6",
-    title: "مطعم التنور",
-    photoUrl: "https://b.top4top.io/p_1852pyskd1.jpg",
-    categories: [{ title: "معجنات", key: "tset1" }],
-  },
-  {
-    id: "2",
-    title: "زهرة الخلد",
-    categories: [{ title: "معجنات", key: "test1" }],
-  },
-  {
-    id: "3",
-    title: "سمبوسة أبو صالح",
-    categories: [{ title: "test2", key: "tset2" }],
-  },
-  {
-    id: "4",
-    title: "بيزا ريم",
-    categories: [{ title: "test3", key: "tset3" }],
-  },
-  {
-    id: "5",
-    title: "أطايب القطيف",
-    categories: [{ title: "test4", key: "tset4" }],
-  },
-  {
-    id: "7",
-    title: "مطعم مايني المقدس",
-    categories: [{ title: "test5", key: "tset5" }],
+    id: "test1",
+    title: "معطم الفراتي",
+    icon: "https://d.top4top.io/p_185160wxc1.jpg",
+    type: "restaurant",
+    description: "it is just a test",
+    products: [
+      { id: "test1", title: "test1", price: 10, images: [], categories: [] },
+    ],
+    categories: [{ title: "test1", key: "test1" }],
   },
 ];
 
-interface Props {}
+interface Props extends InferGetStaticPropsType<typeof getStaticProps> {}
 
-const Home: React.FC<Props> = () => {
+const Home: React.FC<Props> = ({ stores }) => {
   return (
     <StoresProvider stores={stores}>
       <StoresPreivew />
@@ -54,5 +30,12 @@ const Home: React.FC<Props> = () => {
 
 export default Home;
 
-// export async function getStaticProps() {
-// }
+export const getStaticProps: GetStaticProps<{ stores: Store[] }> = async (
+  context
+) => {
+  return {
+    props: {
+      stores: initialStores,
+    },
+  };
+};
