@@ -7,6 +7,5 @@ export const setupConnection = async () =>
   await MikroORM.init({
     entities,
     type: "mongo",
-    clientUrl:
-      "mongodb+srv://mighty:mighty@haladb.b5jdt.mongodb.net/kiosk?retryWrites=true&w=majority",
+    clientUrl: process.env.MONGO_CLIENT_URL,
   });

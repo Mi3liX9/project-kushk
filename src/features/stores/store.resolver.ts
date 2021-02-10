@@ -1,6 +1,6 @@
 import { Ctx, Mutation, Query, Resolver } from "type-graphql";
 import { Store } from "src/features/stores/store";
-import { ContextType } from "src/pages/api/graphql";
+import { ContextType } from "src/types/ContextType";
 
 export const stores: any[] = [
   {
@@ -14,14 +14,14 @@ export const stores: any[] = [
 @Resolver()
 export class StoreResolver {
   @Query(() => [Store])
-  async stores(@Ctx() { entityManager }: ContextType) {
-    return await entityManager.find(Store, {});
+  async stores(@Ctx() { em }: ContextType) {
+    return await em.find(Store, {});
   }
 
   @Mutation(() => Store)
-  async createStore(@Ctx() { entityManager }: ContextType) {
-    const store = entityManager.create(Store, stores[0]);
-    await entityManager.persistAndFlush(store);
+  async createStore(@Ctx() { em }: ContextType) {
+    const store = em.create(Store, stores[0]);
+    await em.persistAndFlush(store);
     return store;
   }
 }
