@@ -5,7 +5,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { Store } from "src/models/store";
+import { Store } from "src/features/stores/store";
 
 type IStoreContext = {
   defaultStores: Store[];

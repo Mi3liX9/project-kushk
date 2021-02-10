@@ -2,12 +2,18 @@
   "name": "mi3li-blog",
   "version": "0.1.0",
   "private": true,
+  "mikro-orm": {
+    "useTsNode": true,
+    "tsConfigPath": "./tsconfig.server.json"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@mikro-orm/core": "^4.4.2",
+    "@mikro-orm/mongodb": "^4.4.2",
     "apollo-server-micro": "^2.19.2",
     "graphql": "^15.5.0",
     "gray-matter": "^4.0.2",

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import ListItem from "../shared/list/list-item";
-import { Store } from "src/models/store";
+import { Store } from "src/features/stores/store";
 
 export interface StorePreviewProps extends Store {}
 

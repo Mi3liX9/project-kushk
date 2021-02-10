@@ -1,38 +1,16 @@
 import "reflect-metadata";
 import { NextApiRequest, NextApiResponse } from "next";
-import { ApolloServer } from "apollo-server-micro";
-import { buildSchemaSync, Field, ID, Query, Resolver } from "type-graphql";
-// import nc from "next-connect";
+import { EntityManager } from "@mikro-orm/core";
+import { setupConnection } from "src/utils/server/mikroorm";
+import { getApolloServerHandler } from "src/utils/type-graphql";
 
-// const handler = nc<NextApiRequest, NextApiResponse>();
-
-@Resolver()
-class Store {
-  @Query(() => String)
-  hello() {
-    return "Hello";
-  }
+export interface ContextType {
+  entityManager: EntityManager;
 }
 
-const schema = buildSchemaSync({ resolvers: [Store] });
-
-let apolloServerHandler: (req: any, res: any) => Promise<void>;
-
-const getApolloServerHandler = async () => {
-  if (!apolloServerHandler) {
-    const apolloServer = new ApolloServer({
-      schema,
-    });
-
-    apolloServerHandler = apolloServer.createHandler({
-      path: "/api/graphql",
-    });
-  }
-  return apolloServerHandler;
-};
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const apolloServerHandler = await getApolloServerHandler();
+  const orm = await setupConnection();
+  const apolloServerHandler = await getApolloServerHandler(orm);
   return apolloServerHandler(req, res);
 };
 
