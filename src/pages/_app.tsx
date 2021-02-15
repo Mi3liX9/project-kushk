@@ -2,43 +2,37 @@ import { AppProps } from "next/dist/next-server/lib/router/router";
 import Head from "next/head";
 import styled from "styled-components";
 import Header from "src/components/app/header/header";
-
 import "../styles/globals.css";
 import { Site } from "site";
 import React from "react";
 import Footer from "src/components/app/footer/footer";
-import { darkThemeFunc } from "src/utils/clinet/dark-theme.function";
+import { darkThemeFunc } from "src/utils/client/dark-theme.function";
+import { ApolloProvider } from "@apollo/client";
+import { useApollo } from "src/utils/client/apollo-client";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
-  return (
-    <>
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: darkThemeFunc,
-          }}
-        />
-        <title>{Site.siteName}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href={Site.mainIcon} />
-        {Site.meta.map((meta) => (
-          <meta
-            // name={meta.property}
-            property={meta.property}
-            content={meta.content}
-            key={meta.key ?? meta.property}
-          />
-        ))}
-      </Head>
+  const apolloClient = useApollo(pageProps.initialApolloState);
 
+  return (
+    <ApolloProvider client={apolloClient}>
       <Container>
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: darkThemeFunc,
+            }}
+          />
+          <title>{Site.siteName}</title>
+          {/* <link rel="shortcut icon" href={Site.mainIcon} /> */}
+        </Head>
+
         <Header />
         <Body>
           <Component {...pageProps} />
         </Body>
         {/* <Footer /> */}
       </Container>
-    </>
+    </ApolloProvider>
   );
 };
 

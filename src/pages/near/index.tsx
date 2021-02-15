@@ -1,16 +1,27 @@
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps } from "next";
 import React from "react";
 import StoresPreivew from "src/components/near/stores-preview";
 import StoresProvider from "src/hooks/useStores";
 import { Store } from "src/features/stores/store";
+import { gql, useQuery } from "@apollo/client";
+import { initializeApollo } from "src/utils/client/apollo-client";
 
-const initialStores: Store[] = [];
+interface Props {}
 
-interface Props extends InferGetStaticPropsType<typeof getStaticProps> {}
+export const StoresQuery = gql`
+  query stores {
+    stores {
+      title
+      id
+    }
+  }
+`;
 
-const Home: React.FC<Props> = ({ stores }) => {
+const Home: React.FC<Props> = () => {
+  const { loading, error, data } = useQuery<{ stores: Store[] }>(StoresQuery);
+  console.log(data);
   return (
-    <StoresProvider stores={stores}>
+    <StoresProvider stores={[]}>
       <StoresPreivew />
     </StoresProvider>
   );
@@ -18,12 +29,16 @@ const Home: React.FC<Props> = ({ stores }) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps<{ stores: Store[] }> = async (
-  context
-) => {
-  return {
-    props: {
-      stores: initialStores,
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const apolloClient = initializeApollo();
+
+//   await apolloClient.query({
+//     query: StoresQuery,
+//   });
+
+//   return {
+//     props: {
+//       initialApolloState: apolloClient.cache.extract(),
+//     },
+//   };
+// };

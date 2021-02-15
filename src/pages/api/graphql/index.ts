@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ApolloServer } from "apollo-server-micro";
-import { buildSchemaSync } from "type-graphql";
 import { MikroORM } from "@mikro-orm/core";
-import { StoreResolver } from "../../../features/stores/store.resolver";
 import { setupConnection } from "src/utils/server/mikroorm";
+import { buildSchemaSync } from "type-graphql";
+import { StoreResolver } from "src/features/stores/store.resolver";
 
 const schema = buildSchemaSync({ resolvers: [StoreResolver] });
 
