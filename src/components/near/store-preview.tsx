@@ -9,7 +9,7 @@ export interface StorePreviewProps extends Store {}
 const StorePreview: React.FC<StorePreviewProps> = (store) => (
   <Link href={"/stores/" + store.id}>
     <a>
-      <ListItem icon={store.icon}>
+      <ListItem icon={store.icon ?? "/icons/Kushk-Logo-Orange.png"}>
         <Information>
           <Title id="title">{store.title}</Title>
           {/* <Categories id="cateories">

@@ -10,7 +10,7 @@ interface Props {
 const ListItem: React.FC<Props> = ({ children, icon, iconRadius }) => {
   return (
     <Item>
-      <Icon src={icon} iconRadius={iconRadius} />
+      {icon ? <Icon src={icon} iconRadius={iconRadius} /> : null}
       <Children>{children}</Children>
     </Item>
   );
