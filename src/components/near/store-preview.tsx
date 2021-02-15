@@ -12,9 +12,9 @@ const StorePreview: React.FC<StorePreviewProps> = (store) => (
       <ListItem icon={store.icon}>
         <Information>
           <Title id="title">{store.title}</Title>
-          <Categories id="cateories">
+          {/* <Categories id="cateories">
             {store.categories.map((c) => c.title + " ")}
-          </Categories>
+          </Categories> */}
         </Information>
       </ListItem>
     </a>

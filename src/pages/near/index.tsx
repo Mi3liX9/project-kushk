@@ -19,11 +19,14 @@ export const StoresQuery = gql`
 
 const Home: React.FC<Props> = () => {
   const { loading, error, data } = useQuery<{ stores: Store[] }>(StoresQuery);
-  console.log(data);
+  if (loading) return <div>lodaing...</div>;
+  if (error) {
+    return <div>error</div>;
+  }
   return (
-    <StoresProvider stores={[]}>
-      <StoresPreivew />
-    </StoresProvider>
+    // <StoresProvider stores={data?.stores}>
+    <StoresPreivew stores={data.stores} />
+    // </StoresProvider>
   );
 };
 
