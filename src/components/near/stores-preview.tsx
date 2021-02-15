@@ -9,31 +9,8 @@ interface Props {
 }
 
 const StoresPreivew: React.FC<Props> = ({ stores }) => {
-  // const [value, setValue] = useState("");
-  // const [category, setCategory] = useState("");
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   router.replace("/near#");
-  // }, []);
-
-  // useEffect(() => {
-  //   const words = value.split(" ");
-  //   const filteredStores = defaultStores.filter(
-  //     (store) =>
-  //       words.every((word) => store.title.includes(word)) &&
-  //       (category === "" ? true : store.categories.includes(category))
-  //   );
-  //   setStores(filteredStores);
-  // }, [value, category, defaultStores]);
-
-  // const myCategories = new Set<{ title: string; key: string }>();
-  // defaultStores.forEach((s) =>
-  //   s.categories.forEach((s) => myCategories.add(s))
-  // );
-
   return (
-    <List requiresImage>
+    <List>
       {/* <SearchBar
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -47,3 +24,26 @@ const StoresPreivew: React.FC<Props> = ({ stores }) => {
 };
 
 export default StoresPreivew;
+
+// const [value, setValue] = useState("");
+// const [category, setCategory] = useState("");
+// const router = useRouter();
+
+// useEffect(() => {
+//   router.replace("/near#");
+// }, []);
+
+// useEffect(() => {
+//   const words = value.split(" ");
+//   const filteredStores = defaultStores.filter(
+//     (store) =>
+//       words.every((word) => store.title.includes(word)) &&
+//       (category === "" ? true : store.categories.includes(category))
+//   );
+//   setStores(filteredStores);
+// }, [value, category, defaultStores]);
+
+// const myCategories = new Set<{ title: string; key: string }>();
+// defaultStores.forEach((s) =>
+//   s.categories.forEach((s) => myCategories.add(s))
+// );
