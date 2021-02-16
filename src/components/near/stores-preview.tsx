@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Store } from "src/features/stores/store";
+import styled from "styled-components";
 import List from "../shared/list/list";
-import SearchBar from "../shared/searchbar/search-bar";
 import StorePreview from "./store-preview";
 
 interface Props {
-  stores: Store[];
+  stores: Store[] | undefined;
 }
 
 const StoresPreivew: React.FC<Props> = ({ stores }) => {
+  if (!stores) {
+    return <Text>جارٍ التنزيل...</Text>;
+  }
+
+  if (stores.length === 0) {
+    return <Text>لا يوجد متاجر متاحة</Text>;
+  }
   return (
     <List>
-      {/* <SearchBar
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        categories={[]}
-      /> */}
       {stores.map((store) => (
         <StorePreview {...store} key={store.id} />
       ))}
@@ -25,25 +27,12 @@ const StoresPreivew: React.FC<Props> = ({ stores }) => {
 
 export default StoresPreivew;
 
-// const [value, setValue] = useState("");
-// const [category, setCategory] = useState("");
-// const router = useRouter();
-
-// useEffect(() => {
-//   router.replace("/near#");
-// }, []);
-
-// useEffect(() => {
-//   const words = value.split(" ");
-//   const filteredStores = defaultStores.filter(
-//     (store) =>
-//       words.every((word) => store.title.includes(word)) &&
-//       (category === "" ? true : store.categories.includes(category))
-//   );
-//   setStores(filteredStores);
-// }, [value, category, defaultStores]);
-
 // const myCategories = new Set<{ title: string; key: string }>();
 // defaultStores.forEach((s) =>
 //   s.categories.forEach((s) => myCategories.add(s))
 // );
+
+const Text = styled.p`
+  user-select: none;
+  text-align: center;
+`;

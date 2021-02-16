@@ -1,29 +1,19 @@
 import React from "react";
 import StoresPreivew from "src/components/near/stores-preview";
-import { Store } from "src/features/stores/store";
-import { gql, useQuery } from "@apollo/client";
+import SearchBar from "src/components/shared/searchbar/search-bar";
+import { useStores } from "src/hooks/useStores";
 
-interface Props {}
+const Home: React.FC = () => {
+  const { stores, search, setSearch, error } = useStores();
 
-const StoresQuery = gql`
-  query stores {
-    stores {
-      title
-      id
-    }
-  }
-`;
-
-const Home: React.FC<Props> = () => {
-  const { loading, error, data } = useQuery<{ stores: Store[] }>(StoresQuery);
-  if (loading) return <div>lodaing...</div>;
   if (error) {
     return <div>{error.message}</div>;
   }
   return (
-    // <StoresProvider stores={data?.stores}>
-    <StoresPreivew stores={data!.stores} />
-    // </StoresProvider>
+    <div>
+      <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} />
+      <StoresPreivew stores={stores} />
+    </div>
   );
 };
 

@@ -3,17 +3,17 @@ import styled from "styled-components";
 import Categories from "../categories/categories";
 import Search from "../input/search";
 
-interface Props {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  categories?: { title: string; key: string }[];
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  // value: string;
+  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // categories?: { title: string; key: string }[];
 }
 
-const SearchBar: React.FC<Props> = ({ categories, value, onChange }) => {
+const SearchBar: React.FC<Props> = ({ ...props }) => {
   return (
     <SearchContainer>
-      <Search placeholder="شريط البحث" value={value} onChange={onChange} />
-      {categories ? <Categories categories={categories} /> : null}
+      <Search placeholder="شريط البحث" {...props} />
+      {/* {categories ? <Categories categories={categories} /> : null} */}
     </SearchContainer>
   );
 };
