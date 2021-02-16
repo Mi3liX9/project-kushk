@@ -18,17 +18,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const apolloClient = initializeApollo();
-
-//   await apolloClient.query({
-//     query: StoresQuery,
-//   });
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   };
-// };

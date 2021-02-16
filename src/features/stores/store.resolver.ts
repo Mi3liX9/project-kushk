@@ -1,4 +1,12 @@
-import { Ctx, Mutation, Query, Resolver } from "type-graphql";
+import {
+  Ctx,
+  Mutation,
+  Query,
+  Resolver,
+  InputType,
+  Field,
+  Arg,
+} from "type-graphql";
 import { Store } from "src/features/stores/store";
 import { ContextType } from "src/types/ContextType";
 
@@ -11,6 +19,15 @@ export const stores: any[] = [
   },
 ];
 
+@InputType()
+class FindSotreDto {
+  @Field({ nullable: true })
+  id?: string;
+
+  @Field({ nullable: true })
+  title?: string;
+}
+
 @Resolver()
 export class StoreResolver {
   @Query(() => [Store])
@@ -18,9 +35,17 @@ export class StoreResolver {
     return await em.find(Store, {});
   }
 
+  @Query(() => Store, { nullable: true })
+  async store(@Arg("data") data: FindSotreDto, @Ctx() { em }: ContextType) {
+    const { id, title } = data;
+    return await em.findOne(Store, {
+      $or: [{ title }, { id }],
+    });
+  }
+
   @Mutation(() => Store)
-  async createStore(@Ctx() { em }: ContextType) {
-    const store = em.create(Store, stores[0]);
+  async createStore(@Ctx() { em }: ContextType, @Arg("title") title: string) {
+    const store = em.create(Store, { title });
     await em.persistAndFlush(store);
     return store;
   }
