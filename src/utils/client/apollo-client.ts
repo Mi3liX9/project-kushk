@@ -9,15 +9,21 @@ import { useMemo } from "react";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
+function createLink() {
+  if (typeof window === "undefined") {
+    return new HttpLink({
+      uri: "https://kushk.mi3lix9.vercel.app//api/graphql",
+    });
+  }
+  return new HttpLink({
+    uri: "api/graphql",
+  });
+}
+
 function createApolloClient() {
   apolloClient = new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: new HttpLink({
-      uri:
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3000/api/graphql"
-          : "https://kushk.mi3lix9.vercel.app/api/graphql",
-    }),
+    link: createLink(),
     cache: new InMemoryCache(),
   });
   return apolloClient;
