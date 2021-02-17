@@ -16,7 +16,7 @@ function createApolloClient() {
       uri:
         process.env.NODE_ENV === "development"
           ? "http://localhost:3000/api/graphql"
-          : process.env.WEBSITE_URL + "/api/graphql",
+          : "https://kushk.mi3lix9.vercel.app/api/graphql",
     }),
     cache: new InMemoryCache(),
   });
