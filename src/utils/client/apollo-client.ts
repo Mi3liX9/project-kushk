@@ -4,7 +4,6 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from "@apollo/client";
-import { env } from "process";
 import { useMemo } from "react";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -12,11 +11,11 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 function createLink() {
   if (typeof window === "undefined") {
     return new HttpLink({
-      uri: "https://kushk.mi3lix9.vercel.app//api/graphql",
+      uri: process.env.WEBSITE_URL + "/api/graphql",
     });
   }
   return new HttpLink({
-    uri: "api/graphql",
+    uri: "/api/graphql",
   });
 }
 
