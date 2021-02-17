@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import React from "react";
 import Categories from "src/components/shared/categories/categories";
 import ProductsPreivew from "src/components/stores/products-preview";
@@ -16,7 +16,9 @@ const products: ProductType[] = [
   { id: "4", title: "لحم بالجبن", price: "5" },
 ];
 
-const StorePage = ({ id }) => {
+interface Props extends InferGetStaticPropsType<GetStaticProps> {}
+
+const StorePage: React.FC<Props> = ({ id }) => {
   const { loading, error, data } = useQuery<{ store: Store }>(STORE_QUERY, {
     variables: { id },
   });
