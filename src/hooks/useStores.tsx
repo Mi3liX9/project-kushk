@@ -5,8 +5,10 @@ import { Store } from "src/features/stores/store";
 const STORES_QUERY = gql`
   query Stores {
     stores {
-      title
       id
+      title
+      icon
+      description
     }
   }
 `;

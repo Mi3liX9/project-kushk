@@ -12,6 +12,7 @@ const StorePreview: React.FC<StorePreviewProps> = (store) => (
       <ListItem icon={store.icon ?? "/icons/Kushk-Logo-Orange.png"}>
         <Information>
           <Title id="title">{store.title}</Title>
+          <Text>{store.description}</Text>
           {/* <Categories id="cateories">
             {store.categories.map((c) => c.title + " ")}
           </Categories> */}
@@ -33,15 +34,18 @@ const Text = styled.p`
   margin: 0;
   font-size: 0.9rem;
   line-height: 1;
-  flex-basis: 30%;
+  flex-basis: 100%;
 `;
 const Title = styled(Text)`
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1px;
-  flex-basis: 100%;
 `;
 
-const Categories = styled(Text)`
-  flex-basis: 100%;
+const Section = styled(Text)`
+  flex-basis: 30%;
 `;
+
+// const Categories = styled(Text)`
+//   flex-basis: 100%;
+// `;

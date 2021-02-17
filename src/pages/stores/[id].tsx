@@ -1,6 +1,10 @@
+import { gql, useQuery } from "@apollo/client";
+import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 import Categories from "src/components/shared/categories/categories";
 import ProductsPreivew from "src/components/stores/products-preview";
+import { Store } from "src/features/stores/store";
+import { initializeApollo } from "src/utils/client/apollo-client";
 import styled from "styled-components";
 
 type ProductType = { id: string; title: string; price: string };
@@ -12,25 +16,81 @@ const products: ProductType[] = [
   { id: "4", title: "لحم بالجبن", price: "5" },
 ];
 
-const StorePage = () => {
+const StorePage = ({ id }) => {
+  const { loading, error, data } = useQuery<{ store: Store }>(STORE_QUERY, {
+    variables: { id },
+  });
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+  if (loading) {
+    return <div>loading...</div>;
+  }
   return (
     <Container>
       <StoreInfo>
-        <StoreImg src="https://d.top4top.io/p_185160wxc1.jpg" />
-        <h1>مطعم الفرات</h1>
-        <p>
-          وصف وكلام طويل عن المطعم ولأن مالي خلق أفكر بكتب كلام وبس لين تجي
-          الحزة اللي المفروض أكتب فيها كلام حقيقي وشكرًا لكم على حسن تعاونكم
-          والسلام عليكم ورحمة الله وبركاته
-        </p>
+        <StoreImg
+          src={data?.store.icon ?? "https://d.top4top.io/p_185160wxc1.jpg"}
+        />
+        <h1>{data?.store.title}</h1>
+        <p>{data?.store.description}</p>
       </StoreInfo>
-      <H2>قائمة الوجبات</H2>
-      <ProductsPreivew products={products} />
+      {/* <H2>قائمة الوجبات</H2> */}
+      {/* <ProductsPreivew products={products} /> */}
     </Container>
   );
 };
 
 export default StorePage;
+
+const STORES_QUERY = gql`
+  query Stores {
+    stores {
+      id
+    }
+  }
+`;
+
+const STORE_QUERY = gql`
+  query Store($id: String) {
+    store(data: { id: $id }) {
+      id
+      title
+      description
+      icon
+    }
+  }
+`;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: STORE_QUERY,
+    variables: { id: context.params?.id },
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      id: context.params?.id,
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async (context) => {
+  const apolloClient = initializeApollo();
+
+  const { data } = await apolloClient.query<{ stores: Store[] }>({
+    query: STORES_QUERY,
+  });
+  const paths = data.stores.map(({ id }) => ({ params: { id } }));
+  return {
+    paths,
+    fallback: true,
+  };
+};
 
 const StoreInfo = styled.div`
   display: flex;

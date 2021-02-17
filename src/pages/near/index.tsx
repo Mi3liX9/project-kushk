@@ -3,7 +3,7 @@ import StoresPreivew from "src/components/near/stores-preview";
 import SearchBar from "src/components/shared/searchbar/search-bar";
 import { useStores } from "src/hooks/useStores";
 
-const Home: React.FC = () => {
+const Near: React.FC = () => {
   const { stores, search, setSearch, error } = useStores();
 
   if (error) {
@@ -17,4 +17,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Near;

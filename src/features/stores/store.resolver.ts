@@ -28,6 +28,18 @@ class FindSotreDto {
   title?: string;
 }
 
+@InputType()
+class CreateSotreDto {
+  @Field()
+  title: string;
+
+  @Field(() => String, { nullable: true })
+  description?: string;
+
+  @Field(() => String, { nullable: true })
+  icon?: string;
+}
+
 @Resolver()
 export class StoreResolver {
   @Query(() => [Store])
@@ -44,8 +56,11 @@ export class StoreResolver {
   }
 
   @Mutation(() => Store)
-  async createStore(@Ctx() { em }: ContextType, @Arg("title") title: string) {
-    const store = em.create(Store, { title });
+  async createStore(
+    @Ctx() { em }: ContextType,
+    @Arg("data") data: CreateSotreDto
+  ) {
+    const store = em.create(Store, data);
     await em.persistAndFlush(store);
     return store;
   }
