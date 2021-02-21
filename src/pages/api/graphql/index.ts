@@ -2,9 +2,10 @@ import "reflect-metadata";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ApolloServer } from "apollo-server-micro";
 import { MikroORM } from "@mikro-orm/core";
-import { setupConnection } from "src/utils/server/mikroorm";
+import { startOrm } from "src/utils/database/mikroorm";
 import { buildSchemaSync } from "type-graphql";
 import { StoreResolver } from "src/features/stores/store.resolver";
+import { contextResolver as context } from "src/utils/context";
 
 const schema = buildSchemaSync({ resolvers: [StoreResolver] });
 
@@ -14,9 +15,10 @@ const getApolloServerHandler = async (orm: MikroORM) => {
   if (!apolloServerHandler) {
     const apolloServer = new ApolloServer({
       schema,
-      context: () => ({
-        em: orm.em.fork(),
-      }),
+      context,
+      // context: () => ({
+      //   em: orm.em.fork(),
+      // }),
     });
 
     apolloServerHandler = apolloServer.createHandler({
@@ -27,7 +29,7 @@ const getApolloServerHandler = async (orm: MikroORM) => {
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const orm = await setupConnection();
+  const orm = await startOrm();
   const apolloServerHandler = await getApolloServerHandler(orm);
   return apolloServerHandler(req, res);
 };

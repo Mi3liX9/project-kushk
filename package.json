@@ -2,10 +2,6 @@
   "name": "mi3li-blog",
   "version": "0.1.0",
   "private": true,
-  "mikro-orm": {
-    "useTsNode": true,
-    "tsConfigPath": "./tsconfig.server.json"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

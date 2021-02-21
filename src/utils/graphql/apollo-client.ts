@@ -1,35 +1,42 @@
 import {
   ApolloClient,
-  HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
 } from "@apollo/client";
+
 import { useMemo } from "react";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
-function createLink() {
+function createIsomorphLink(context?: any) {
+  // For SSG & SSR get the context and add it with schema to SchemaLink
   if (typeof window === "undefined") {
+    const { SchemaLink } = require("@apollo/client/link/schema");
+    const { schema } = require("src/utils/graphql/graphql-schema");
+    const { contextResolver } = require("src/utils/context");
+
+    return new SchemaLink({ context: context ?? contextResolver, schema });
+
+    // If not create an instance from the url
+  } else {
+    const { HttpLink } = require("@apollo/client");
     return new HttpLink({
-      uri: process.env.WEBSITE_URL + "/api/graphql",
+      uri: "/api/graphql",
     });
   }
-  return new HttpLink({
-    uri: "/api/graphql",
-  });
 }
 
-function createApolloClient() {
+function createApolloClient(context?: any) {
   apolloClient = new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: createLink(),
+    link: createIsomorphLink(context),
     cache: new InMemoryCache(),
   });
   return apolloClient;
 }
 
-export function initializeApollo(initialState: any = null) {
-  const _apolloClient = apolloClient ?? createApolloClient();
+export function initializeApollo(initialState: any = null, context?: any) {
+  const _apolloClient = apolloClient ?? createApolloClient(context);
 
   // If your page has Next.js data fetching methods that use Apollo Client,
   // the initial state gets hydrated here
@@ -50,7 +57,9 @@ export function initializeApollo(initialState: any = null) {
   return _apolloClient;
 }
 
-export function useApollo(initialState: any) {
-  const store = useMemo(() => initializeApollo(initialState), [initialState]);
+export function useApollo(initialState: any, context?: any) {
+  const store = useMemo(() => initializeApollo(initialState, context), [
+    initialState,
+  ]);
   return store;
 }

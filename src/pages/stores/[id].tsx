@@ -4,7 +4,7 @@ import React from "react";
 import Categories from "src/components/shared/categories/categories";
 import ProductsPreivew from "src/components/stores/products-preview";
 import { Store } from "src/features/stores/store";
-import { initializeApollo } from "src/utils/client/apollo-client";
+import { initializeApollo } from "src/utils/graphql/apollo-client";
 import styled from "styled-components";
 
 type ProductType = { id: string; title: string; price: string };
