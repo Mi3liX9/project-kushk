@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Input from "src/components/shared/input/input";
 import styled from "styled-components";
 
@@ -10,7 +10,21 @@ const AddStorePage: NextPage = () => {
   const [mutate, { data, loading, error }] = useMutation(ADD_STORE_MUTAION);
   const [title, setTitle] = useState("");
   const [icon, setIcon] = useState("");
+  const [iconFile, setIconFile] = useState<File>();
   const [description, setDescription] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (iconFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setIcon(reader.result as string);
+      };
+      reader.readAsDataURL(iconFile);
+    } else {
+      setIcon("");
+    }
+  }, [iconFile]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,13 +59,29 @@ const AddStorePage: NextPage = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <Title>صورة المتجر</Title>
-        <Input
+        {/* <Input
           placeholder="صورة المتجر"
           value={icon}
           onChange={(e) => setIcon(e.target.value)}
+        /> */}
+
+        {/* {icon ? <Img src={icon} /> : null} */}
+
+        {/* IMG */}
+        <Img src={icon} onClick={() => fileInputRef.current?.click()} />
+        <input
+          type="file"
+          accept="images/*"
+          style={{ display: "none" }}
+          ref={fileInputRef}
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) {
+              setIconFile(file);
+            }
+          }}
         />
 
-        {icon ? <Img src={icon} /> : null}
         <Button disabled={!title || !icon || loading}>اضافة متجر</Button>
         {loading ? <p>جارٍ اضافة المتجر...</p> : null}
       </Form>
@@ -116,5 +146,6 @@ const Button = styled.button`
 
 const Img = styled.img`
   width: 100px;
+  height: 100px;
   border-radius: 50%;
 `;
