@@ -9,6 +9,7 @@ import Footer from "src/components/app/footer/footer";
 import { darkThemeFunc } from "src/utils/client/dark-theme.function";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "src/utils/graphql/apollo-client";
+import { GlobalStyles } from "twin.macro";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -28,6 +29,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
         <Header />
         <Body>
+          <GlobalStyles />
           <Component {...pageProps} />
         </Body>
         {/* <Footer /> */}
