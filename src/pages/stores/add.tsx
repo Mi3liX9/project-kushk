@@ -68,15 +68,18 @@ const AddStorePage: NextPage = () => {
         {/* {icon ? <Img src={icon} /> : null} */}
 
         {/* IMG */}
-        <Img src={icon} onClick={() => fileInputRef.current?.click()} />
+        <Img
+          src={icon && icon !== "" ? icon : "/icons/Kushk-Logo-Orange.png"}
+          onClick={() => fileInputRef.current?.click()}
+        />
         <input
           type="file"
-          accept="images/*"
+          accept="image/png, image/jpeg"
           style={{ display: "none" }}
           ref={fileInputRef}
           onChange={(e) => {
-            const file = e.target.files[0];
-            if (file) {
+            const file = e.target.files![0];
+            if (file && file.type) {
               setIconFile(file);
             }
           }}
