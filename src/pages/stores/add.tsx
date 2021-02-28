@@ -59,15 +59,6 @@ const AddStorePage: NextPage = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <Title>صورة المتجر</Title>
-        {/* <Input
-          placeholder="صورة المتجر"
-          value={icon}
-          onChange={(e) => setIcon(e.target.value)}
-        /> */}
-
-        {/* {icon ? <Img src={icon} /> : null} */}
-
-        {/* IMG */}
         <Img
           src={icon && icon !== "" ? icon : "/icons/Kushk-Logo-Orange.png"}
           onClick={() => fileInputRef.current?.click()}

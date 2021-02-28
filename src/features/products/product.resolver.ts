@@ -1,10 +1,11 @@
-import { Query, Resolver } from "type-graphql";
-import { Store } from "src/features/stores/store";
+import { ContextType } from "src/types/ContextType";
+import { Ctx, Query, Resolver } from "type-graphql";
+import { Product } from "./Product";
 
-// @Resolver()
-// export class StoreResolver {
-//   @Query(() => [Store])
-//   stores() {
-//     return stores;
-//   }
-// }
+@Resolver()
+export class ProductResolver {
+  @Query(() => [Product])
+  products(@Ctx() ctx: ContextType) {
+    return ctx.em.find(Product, {});
+  }
+}

@@ -3,11 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { ApolloServer } from "apollo-server-micro";
 import { MikroORM } from "@mikro-orm/core";
 import { startOrm } from "src/utils/database/mikroorm";
-import { buildSchemaSync } from "type-graphql";
-import { StoreResolver } from "src/features/stores/store.resolver";
 import { contextResolver as context } from "src/utils/context";
-
-const schema = buildSchemaSync({ resolvers: [StoreResolver] });
+import { schema } from "src/utils/graphql/graphql-schema";
 
 let apolloServerHandler: (req: any, res: any) => Promise<void>;
 
@@ -16,9 +13,6 @@ const getApolloServerHandler = async (orm: MikroORM) => {
     const apolloServer = new ApolloServer({
       schema,
       context,
-      // context: () => ({
-      //   em: orm.em.fork(),
-      // }),
     });
 
     apolloServerHandler = apolloServer.createHandler({

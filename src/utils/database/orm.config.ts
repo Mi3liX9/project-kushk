@@ -1,10 +1,11 @@
 import { Options } from "@mikro-orm/core";
 import { AnyEntity, EntityClass } from "@mikro-orm/core/typings";
+import { Product } from "src/features/products/Product";
 import { Store } from "src/features/stores/store";
 
 type EntitiesType = EntityClass<AnyEntity<any>>[];
 
-const entities: EntitiesType = [Store];
+const entities: EntitiesType = [Store, Product];
 
 const config: Options = {
   entities,
