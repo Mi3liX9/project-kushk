@@ -44,15 +44,19 @@ class CreateSotreDto {
 export class StoreResolver {
   @Query(() => [Store])
   async stores(@Ctx() { em }: ContextType) {
-    return await em.find(Store, {});
+    return await em.find(Store, {}, ["products"]);
   }
 
   @Query(() => Store, { nullable: true })
   async store(@Arg("data") data: FindSotreDto, @Ctx() { em }: ContextType) {
     const { id, title } = data;
-    return await em.findOne(Store, {
-      $or: [{ title }, { id }],
-    });
+    return await em.findOne(
+      Store,
+      {
+        $or: [{ title }, { id }],
+      },
+      ["products"]
+    );
   }
 
   @Mutation(() => Store)

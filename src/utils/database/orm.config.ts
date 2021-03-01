@@ -5,7 +5,7 @@ import { Store } from "src/features/stores/store";
 
 type EntitiesType = EntityClass<AnyEntity<any>>[];
 
-const entities: EntitiesType = [Store];
+const entities: EntitiesType = [Store, Product];
 
 const config: Options = {
   entities,

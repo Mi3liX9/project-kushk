@@ -12,8 +12,8 @@ function createIsomorphLink(context?: any) {
   // For SSG & SSR get the context and add it with schema to SchemaLink
   if (typeof window === "undefined") {
     const { SchemaLink } = require("@apollo/client/link/schema");
-    const { schema } = require("src/utils/graphql/graphql-schema");
     const { contextResolver } = require("src/utils/context");
+    const { schema } = require("src/utils/graphql/graphql-schema");
 
     return new SchemaLink({ context: context ?? contextResolver, schema });
 

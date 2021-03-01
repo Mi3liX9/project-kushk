@@ -1,27 +1,26 @@
 import { gql, useQuery } from "@apollo/client";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import React from "react";
+import Link from "next/link";
+import React, { useEffect } from "react";
 import Categories from "src/components/shared/categories/categories";
 import ProductsPreivew from "src/components/stores/products-preview";
 import { Store } from "src/features/stores/store";
 import { initializeApollo } from "src/utils/graphql/apollo-client";
 import styled from "styled-components";
 
-type ProductType = { id: string; title: string; price: string };
-
-const products: ProductType[] = [
-  { id: "1", title: "بيض بالجبن", price: "5" },
-  { id: "2", title: "جبن", price: "4" },
-  { id: "3", title: "لحم بالعجين", price: "5" },
-  { id: "4", title: "لحم بالجبن", price: "5" },
-];
-
 interface Props extends InferGetStaticPropsType<GetStaticProps> {}
 
 const StorePage: React.FC<Props> = ({ id }) => {
-  const { loading, error, data } = useQuery<{ store: Store }>(STORE_QUERY, {
-    variables: { id },
-  });
+  const { loading, error, data, refetch } = useQuery<{ store: Store }>(
+    STORE_QUERY,
+    {
+      variables: { id },
+    }
+  );
+
+  useEffect(() => {
+    (async () => await refetch())();
+  }, []);
 
   if (error) {
     return <div>{error.message}</div>;
@@ -38,8 +37,11 @@ const StorePage: React.FC<Props> = ({ id }) => {
         <h1>{data?.store.title}</h1>
         <p>{data?.store.description}</p>
       </StoreInfo>
-      {/* <H2>قائمة الوجبات</H2> */}
-      {/* <ProductsPreivew products={products} /> */}
+      <H2>قائمة المنتجات</H2>
+      <ProductsPreivew products={data?.store.products as any} />
+      <Link href={id + "/dashboard"}>
+        <button>اضافة متجر</button>
+      </Link>
     </Container>
   );
 };
@@ -61,6 +63,11 @@ const STORE_QUERY = gql`
       title
       description
       icon
+      products {
+        title
+        images
+        description
+      }
     }
   }
 `;

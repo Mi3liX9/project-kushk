@@ -14,7 +14,9 @@ const STORES_QUERY = gql`
 `;
 
 export function useStores() {
-  const { loading, error, data } = useQuery<{ stores: Store[] }>(STORES_QUERY);
+  const { loading, data, ...query } = useQuery<{ stores: Store[] }>(
+    STORES_QUERY
+  );
 
   const [search, setSearch] = useState("");
   const [stores, setStores] = useState(data?.stores);
@@ -36,8 +38,8 @@ export function useStores() {
     search,
     setSearch,
     stores,
-    error,
     loading,
     defaultStores: data?.stores,
+    ...query,
   };
 }

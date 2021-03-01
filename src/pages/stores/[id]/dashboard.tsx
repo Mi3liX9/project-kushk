@@ -1,15 +1,13 @@
 import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Input from "src/components/shared/input/input";
-import { useStores } from "src/hooks/useStores";
 import styled from "styled-components";
 
-const AddStorePage: NextPage = () => {
-  const { push } = useRouter();
-  const [mutate, { data, loading, error }] = useMutation(ADD_STORE_MUTAION);
-  const { refetch } = useStores();
+const Dashboard: NextPage = () => {
+  const { back, ...router } = useRouter();
+  const [mutate, { loading, error }] = useMutation(ADD_PRODUCT_MUTAION);
   const [title, setTitle] = useState("");
   const [icon, setIcon] = useState("");
   const [iconFile, setIconFile] = useState<File>();
@@ -27,21 +25,18 @@ const AddStorePage: NextPage = () => {
       setIcon("");
     }
   }, [iconFile]);
-
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
     if (title || icon) {
+      e.preventDefault();
       const { errors } = await mutate({
         variables: {
+          store: router.asPath.split("/")[2],
           title: title.trim(),
           description: description.trim(),
-          icon: icon.trim(),
+          images: [icon],
         },
       });
-      if (!errors) {
-        await refetch();
-        push("/");
-      }
+      if (!errors) back();
     }
   }
 
@@ -49,20 +44,20 @@ const AddStorePage: NextPage = () => {
     <div>
       {error ? <p>{error}</p> : null}
       <Form onSubmit={handleSubmit}>
-        <Title>اسم المتجر</Title>
+        <Title>اسم المنتج</Title>
         <Input
-          placeholder="اسم المتجر"
+          placeholder="اسم المنتج"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <Title>وصف المتجر</Title>
+        <Title>وصف المنتج</Title>
         <TextArea
-          placeholder="وصف المتجر"
+          placeholder="وصف المنتج"
           rows={4}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Title>صورة المتجر</Title>
+        <Title>صورة المنتج</Title>
         <Img
           src={icon && icon !== "" ? icon : "/icons/Kushk-Logo-Orange.png"}
           onClick={() => fileInputRef.current?.click()}
@@ -80,26 +75,30 @@ const AddStorePage: NextPage = () => {
           }}
         />
 
-        <Button disabled={!title || !icon || loading}>اضافة متجر</Button>
-        {loading ? <p>جارٍ اضافة المتجر...</p> : null}
+        <Button disabled={!title || loading}>اضافة منتج</Button>
+        {loading ? <p>جارٍ اضافة المنتج...</p> : null}
       </Form>
-      <pre>{JSON.stringify({ title, icon, description }, null, 2)}</pre>
     </div>
   );
 };
 
-const ADD_STORE_MUTAION = gql`
-  mutation AddStore($title: String!, $description: String, $icon: String!) {
-    createStore(
-      data: { title: $title, description: $description, icon: $icon }
+const ADD_PRODUCT_MUTAION = gql`
+  mutation AddProduct(
+    $store: String!
+    $title: String!
+    $images: [String!]!
+    $description: String!
+  ) {
+    addProduct(
+      store: $store
+      data: { title: $title, images: $images, description: $description }
     ) {
       title
-      icon
     }
   }
 `;
 
-export default AddStorePage;
+export default Dashboard;
 
 const Form = styled.form`
   display: flex;
@@ -142,8 +141,6 @@ const Button = styled.button`
     background: gray;
   }
 `;
-
-// const Button = (props) => <button {...props} tw="bg-green-500" />;
 
 const Img = styled.img`
   width: 100px;
