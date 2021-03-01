@@ -138,8 +138,6 @@ const Button = styled.button`
   }
 `;
 
-// const Button = (props) => <button {...props} tw="bg-green-500" />;
-
 const Img = styled.img`
   width: 100px;
   height: 100px;

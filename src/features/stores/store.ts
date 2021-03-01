@@ -1,5 +1,7 @@
 import {
+  Collection,
   Entity,
+  OneToMany,
   PrimaryKey,
   Property,
   SerializedPrimaryKey,
@@ -7,7 +9,7 @@ import {
 import { ObjectId } from "@mikro-orm/mongodb";
 import { Field, ID, ObjectType } from "type-graphql";
 import { Category } from "../categories/category";
-import { Product } from "../products/Product";
+// import { Product } from "../products/product";
 
 @Entity()
 @ObjectType()
@@ -35,9 +37,9 @@ export class Store {
   @Property()
   description?: string;
 
-  @Field(() => [Product])
-  // @Property()
-  products: Product[];
+  // @Field(() => [Product])
+  // @OneToMany(() => Product, (p) => p.store)
+  // products = new Collection<Product>(this);
 
   // @Field(() => [Category])
   // categories: Category[];
