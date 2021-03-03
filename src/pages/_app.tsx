@@ -10,31 +10,34 @@ import { darkThemeFunc } from "src/utils/client/dark-theme.function";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "src/utils/graphql/apollo-client";
 import { GlobalStyles } from "twin.macro";
+import { AuthProvider } from "src/hooks/authHook";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <Container>
-        <Head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: darkThemeFunc,
-            }}
-          />
-          <title>{Site.siteName}</title>
-          {/* <link rel="shortcut icon" href={Site.mainIcon} /> */}
-        </Head>
+    <AuthProvider>
+      <ApolloProvider client={apolloClient}>
+        <Container>
+          <Head>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: darkThemeFunc,
+              }}
+            />
+            <title>{Site.siteName}</title>
+            {/* <link rel="shortcut icon" href={Site.mainIcon} /> */}
+          </Head>
 
-        <Header />
-        <Body>
-          <GlobalStyles />
-          <Component {...pageProps} />
-        </Body>
-        {/* <Footer /> */}
-      </Container>
-    </ApolloProvider>
+          <Header />
+          <Body>
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </Body>
+          {/* <Footer /> */}
+        </Container>
+      </ApolloProvider>
+    </AuthProvider>
   );
 };
 
