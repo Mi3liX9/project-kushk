@@ -5,12 +5,14 @@ import React, { useEffect } from "react";
 import Categories from "src/components/shared/categories/categories";
 import ProductsPreivew from "src/components/stores/products-preview";
 import { Store } from "src/features/stores/store";
+import { useAuth } from "src/hooks/authHook";
 import { initializeApollo } from "src/utils/graphql/apollo-client";
 import styled from "styled-components";
 
 interface Props extends InferGetStaticPropsType<GetStaticProps> {}
 
 const StorePage: React.FC<Props> = ({ id }) => {
+  const { user } = useAuth();
   const { loading, error, data, refetch } = useQuery<{ store: Store }>(
     STORE_QUERY,
     {
@@ -39,9 +41,11 @@ const StorePage: React.FC<Props> = ({ id }) => {
       </StoreInfo>
       <H2>قائمة المنتجات</H2>
       <ProductsPreivew products={data?.store.products as any} />
-      <Link href={id + "/dashboard"}>
-        <button>اضافة متجر</button>
-      </Link>
+      {user ? (
+        <Link href={id + "/dashboard"}>
+          <button>اضافة متجر</button>
+        </Link>
+      ) : null}
     </Container>
   );
 };
