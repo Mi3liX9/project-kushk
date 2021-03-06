@@ -10,13 +10,6 @@
     ]
   ],
   "plugins": [
-    "babel-plugin-macros",
-    [
-      "styled-components",
-      {
-        "ssr": true
-      }
-    ],
     "babel-plugin-transform-typescript-metadata",
     [
       "@babel/plugin-proposal-decorators",
@@ -30,7 +23,15 @@
         "loose": true
       }
     ],
-    "babel-plugin-parameter-decorator"
+    "babel-plugin-parameter-decorator",
+    "babel-plugin-twin",
+    "babel-plugin-macros",
+    [
+      "styled-components",
+      {
+        "ssr": true
+      }
+    ]
   ],
   "ignore": ["node_modules", "build"]
 }
