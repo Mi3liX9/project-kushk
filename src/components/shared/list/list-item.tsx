@@ -1,16 +1,15 @@
 import React from "react";
-import { Site } from "site";
-import styled from "styled-components";
+import tw from "twin.macro";
 
 interface Props {
   icon?: string;
   iconRadius?: string;
 }
 
-const ListItem: React.FC<Props> = ({ children, icon, iconRadius }) => {
+const ListItem: React.FC<Props> = ({ children, icon }) => {
   return (
     <Item>
-      {icon ? <Icon src={icon} iconRadius={iconRadius} /> : null}
+      {icon ? <Icon src={icon} /> : null}
       <Children>{children}</Children>
     </Item>
   );
@@ -18,38 +17,9 @@ const ListItem: React.FC<Props> = ({ children, icon, iconRadius }) => {
 
 export default ListItem;
 
-const Item = styled.li`
-  display: flex;
-  background: var(--background-secondary);
-  align-items: center;
-  padding: 1rem;
-  gap: 10px;
-  border-radius: 20px;
-  user-select: none;
-  cursor: pointer;
+const Item = tw.li`flex bg-white dark:bg-gray-900 hover:bg-blue-300 dark:hover:bg-blue-700
+   select-none cursor-pointer items-center p-3 gap-5 rounded-2xl`;
 
-  p {
-    opacity: 0.8;
-  }
+const Children = tw.div`flex gap-x-4 gap-y-5 flex-wrap`;
 
-  :hover {
-    background: var(--color-main);
-    p {
-      opacity: 1;
-    }
-  }
-`;
-
-const Children = styled.div`
-  display: flex;
-  gap: 15px 10px;
-  flex-wrap: wrap;
-`;
-
-const Icon = styled.img<{ iconRadius?: string }>`
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-  height: 60px;
-  width: 60px;
-  border-radius: ${(props) => props.iconRadius ?? `50%`};
-`;
+const Icon = tw.img`object-cover h-16 w-16 rounded-full`;

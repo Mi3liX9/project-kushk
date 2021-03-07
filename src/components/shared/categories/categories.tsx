@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import tw from "twin.macro";
 import Category from "./category";
 
 interface Props {
@@ -19,13 +19,4 @@ const Categories: React.FC<Props> = ({ categories }) => {
 
 export default Categories;
 
-const Container = styled.ul`
-  list-style: none;
-  display: flex;
-  gap: 5px;
-  padding: 0;
-  /* margin-block: 10px; */
-
-  overflow-y: hidden;
-  overflow-x: scroll;
-`;
+const Container = tw.ul`list-none	flex gap-2 p-0 overflow-y-hidden overflow-x-scroll`;

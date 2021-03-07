@@ -1,12 +1,5 @@
-import styled from "styled-components";
+import tw from "twin.macro";
 
-const List = styled.ul`
-  list-style: none;
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-`;
+const List = tw.ul`list-none flex gap-1 flex-col p-0 m-0`;
 
 export default List;

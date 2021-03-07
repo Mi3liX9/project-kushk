@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import styled from "styled-components";
 import ListItem from "../shared/list/list-item";
 import { Store } from "src/features/stores/store";
+import { styled } from "twin.macro";
 
 export interface StorePreviewProps extends Store {}
 
@@ -36,6 +36,7 @@ const Text = styled.p`
   line-height: 1;
   flex-basis: 100%;
 `;
+
 const Title = styled(Text)`
   font-size: 1rem;
   font-weight: 600;

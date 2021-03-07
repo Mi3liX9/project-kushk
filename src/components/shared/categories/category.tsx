@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import tw from "twin.macro";
 
 interface Props {
   title: string;
@@ -12,9 +13,9 @@ const Category: React.FC<Props> = ({ title, onClick, children, key }) => {
   return (
     <li>
       <a href={"#" + key}>
-        <Conainer id={key} onClick={onClick}>
+        <Container id={key} onClick={onClick}>
           {title}
-        </Conainer>
+        </Container>
       </a>
     </li>
   );
@@ -22,15 +23,4 @@ const Category: React.FC<Props> = ({ title, onClick, children, key }) => {
 
 export default Category;
 
-const Conainer = styled.div`
-  padding: 10px;
-  border-radius: 10px;
-  user-select: none;
-  cursor: pointer;
-  background: var(--background-secondary);
-
-  :target,
-  :hover {
-    background: var(--color-main);
-  }
-`;
+const Container = tw.div`p-10 rounded-md select-none cursor-pointer`;

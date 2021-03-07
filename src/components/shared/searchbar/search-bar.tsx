@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { css } from "twin.macro";
 import Categories from "../categories/categories";
-import Search from "../input/search";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   // value: string;
@@ -12,7 +12,13 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 const SearchBar: React.FC<Props> = ({ ...props }) => {
   return (
     <SearchContainer>
-      <Search placeholder="شريط البحث" {...props} />
+      <input
+        css={css`
+          width: 100%;
+        `}
+        placeholder="شريط البحث"
+        {...props}
+      />
       {/* {categories ? <Categories categories={categories} /> : null} */}
     </SearchContainer>
   );

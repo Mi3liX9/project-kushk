@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 import ListItem from "../shared/list/list-item";
 
 export interface ProductProps {
@@ -25,31 +25,10 @@ const Product: React.FC<ProductProps> = (product) => {
 
 export default Product;
 
-const Information = styled.div`
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-`;
+const Information = tw.div`flex flex-col gap-2`;
 
-const Image = styled.img`
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-  height: 60px;
-  width: 60px;
-`;
+const Image = tw.img`object-cover w-60 h-60`;
 
-const Text = styled.p`
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  opacity: 0.8;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-`;
+const Text = tw.p`text-base leading-normal m-0`;
 
-const Title = styled(Text)`
-  font-weight: 600;
-`;
+const Title = tw(Text)`font-semibold`;

@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -27,7 +27,7 @@ a {
   background: var(--highlight-color);
 } */
 
-:root {
+/* :root {
   --background-primary: #f2f2f2;
   --background-secondary: white;
   --color-main: #0072ff;
@@ -39,4 +39,4 @@ a {
   --background-primary: black;
   --background-secondary: #202020;
   --text-color: white;
-}
+} */

@@ -1,6 +1,7 @@
 import React from "react";
 import { Store } from "src/features/stores/store";
 import styled from "styled-components";
+import tw from "twin.macro";
 import List from "../shared/list/list";
 import StorePreview from "./store-preview";
 
@@ -32,7 +33,4 @@ export default StoresPreivew;
 //   s.categories.forEach((s) => myCategories.add(s))
 // );
 
-const Text = styled.p`
-  user-select: none;
-  text-align: center;
-`;
+const Text = tw.p`select-none text-center`;
