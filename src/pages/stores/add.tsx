@@ -2,7 +2,6 @@ import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
-import Input from "src/components/shared/input/input";
 import { useStores } from "src/hooks/useStores";
 import styled from "styled-components";
 
@@ -50,7 +49,7 @@ const AddStorePage: NextPage = () => {
       {error ? <p>{error}</p> : null}
       <Form onSubmit={handleSubmit}>
         <Title>اسم المتجر</Title>
-        <Input
+        <input
           placeholder="اسم المتجر"
           value={title}
           onChange={(e) => setTitle(e.target.value)}

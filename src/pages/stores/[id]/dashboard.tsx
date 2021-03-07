@@ -2,7 +2,6 @@ import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import Input from "src/components/shared/input/input";
 import styled from "styled-components";
 
 const Dashboard: NextPage = () => {
@@ -45,7 +44,7 @@ const Dashboard: NextPage = () => {
       {error ? <p>{error}</p> : null}
       <Form onSubmit={handleSubmit}>
         <Title>اسم المنتج</Title>
-        <Input
+        <input
           placeholder="اسم المنتج"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
