@@ -1,9 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import Input from "src/components/shared/forms/input";
 import { useStores } from "src/hooks/useStores";
-import styled from "styled-components";
+import tw from "twin.macro";
 
 const AddStorePage: NextPage = () => {
   const { push } = useRouter();
@@ -47,29 +48,46 @@ const AddStorePage: NextPage = () => {
   return (
     <div>
       {error ? <p>{error}</p> : null}
-      <Form onSubmit={handleSubmit}>
-        <Title>اسم المتجر</Title>
-        <input
+      <form tw="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <Input
+          label="اسم المتجر"
+          name="name"
+          type="text"
           placeholder="اسم المتجر"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <Title>وصف المتجر</Title>
-        <TextArea
+
+        <Input
+          label="الوصف"
+          name="description"
+          type="textarea"
           placeholder="وصف المتجر"
-          rows={4}
+          rows={2}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Title>صورة المتجر</Title>
-        <Img
-          src={icon && icon !== "" ? icon : "/icons/Kushk-Logo-Orange.png"}
-          onClick={() => fileInputRef.current?.click()}
-        />
+        <div tw="flex flex-col gap-2">
+          <Label>صورة المتجر</Label>
+          <div tw="flex gap-5 items-center">
+            <img
+              tw="w-16 h-16 rounded-full"
+              src={icon && icon !== "" ? icon : "/icons/Kushk-Logo-Orange.png"}
+              onClick={() => fileInputRef.current?.click()}
+            />
+            <button
+              tw="h-9 py-0 px-2 text-center border-2 border-gray-500 text-gray-500 font-medium"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              اضافة صورة
+            </button>
+          </div>
+        </div>
+
         <input
           type="file"
           accept="image/png, image/jpeg"
-          style={{ display: "none" }}
+          tw="hidden"
           ref={fileInputRef}
           onChange={(e) => {
             const file = e.target.files![0];
@@ -79,10 +97,14 @@ const AddStorePage: NextPage = () => {
           }}
         />
 
-        <Button disabled={!title || !icon || loading}>اضافة متجر</Button>
+        <button
+          tw="bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 hover:disabled:bg-gray-500"
+          disabled={!title || !icon || loading}
+        >
+          اضافة متجر
+        </button>
         {loading ? <p>جارٍ اضافة المتجر...</p> : null}
-      </Form>
-      <pre>{JSON.stringify({ title, icon, description }, null, 2)}</pre>
+      </form>
     </div>
   );
 };
@@ -100,52 +122,4 @@ const ADD_STORE_MUTAION = gql`
 
 export default AddStorePage;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
-const TextArea = styled.textarea`
-  resize: none;
-  border: 0;
-  background: var(--background-secondary);
-  padding: 10px;
-  margin: 1rem 0;
-  border-bottom: 3px solid var(--background-secondary);
-  ::placeholder {
-    user-select: none;
-    opacity: 0.8;
-  }
-
-  :focus {
-    border-bottom-color: var(--color-main);
-    outline: 0;
-    border-radius: 2px 2px 0px 0px;
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 1rem;
-  margin: 0;
-  padding: 0;
-`;
-
-const Button = styled.button`
-  background: var(--color-main);
-  border: 0;
-  height: 45px;
-  font-size: 1rem;
-
-  :disabled {
-    background: gray;
-  }
-`;
-
-// const Button = (props) => <button {...props} tw="bg-green-500" />;
-
-const Img = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-`;
+const Label = tw.label``;

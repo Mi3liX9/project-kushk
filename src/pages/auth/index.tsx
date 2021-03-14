@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { createContext } from "react";
 import { useAuth } from "src/hooks/authHook";
 import { auth, googleAuthProvider } from "src/utils/firebase/firebase";
 

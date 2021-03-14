@@ -50,7 +50,7 @@ const Dashboard: NextPage = () => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <Title>وصف المنتج</Title>
-        <TextArea
+        <textarea
           placeholder="وصف المنتج"
           rows={4}
           value={description}
