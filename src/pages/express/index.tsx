@@ -39,13 +39,6 @@ const Express = () => {
 export default Express;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const scrape = require("aliexpress-product-scraper");
-  const product = scrape("32958933105");
-
-  product.then((res: any) => {
-    console.log("The JSON: ", res);
-  });
-
   return {
     props: {},
   };
