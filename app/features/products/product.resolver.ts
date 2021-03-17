@@ -1,4 +1,3 @@
-import { ContextType } from "src/types/ContextType";
 import {
   Arg,
   Ctx,
@@ -26,18 +25,18 @@ class AddProductDto {
 @Resolver()
 export class ProductResolver {
   @Query(() => [Product])
-  products(@Ctx() ctx: ContextType) {
+  products(@Ctx() ctx: IContext) {
     return ctx.em.find(Product, {}, ["store"]);
   }
 
   @Query(() => Product)
-  product(@Ctx() { em }: ContextType, @Arg("id") id: string) {
+  product(@Ctx() { em }: IContext, @Arg("id") id: string) {
     return em.findOne(Product, { id }, ["store"]);
   }
 
   @Mutation(() => Product)
   async addProduct(
-    @Ctx() { em }: ContextType,
+    @Ctx() { em }: IContext,
     @Arg("store") storeId: string,
     @Arg("data") data: AddProductDto
   ) {

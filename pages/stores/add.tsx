@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import Input from "app/components/shared/forms/input";
+import Input from "app/components/elements/input";
 import { useStores } from "app/hooks/useStores";
 import tw from "twin.macro";
 

@@ -1,15 +1,13 @@
 import { EntityManager } from "@mikro-orm/core";
 import { startOrm } from "./database/mikroorm";
 
-export interface ContextType {
-  em: EntityManager;
-}
-
-export async function contextResolver(
-  ctx: ContextType | any
-): Promise<ContextType> {
+export async function contextResolver(ctx: IContext | any): Promise<IContext> {
   const orm = await startOrm();
   ctx.em = orm.em.fork();
 
-  return ctx;
+  return ctx as IContext;
+}
+
+export interface IContext {
+  em: EntityManager;
 }

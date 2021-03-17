@@ -8,7 +8,7 @@ import {
   Arg,
 } from "type-graphql";
 import { Store } from "app/features/stores/store";
-import { ContextType } from "app/utils/context";
+import { IContext } from "app/utils/context";
 
 @InputType()
 class FindSotreDto {
@@ -34,12 +34,12 @@ class CreateSotreDto {
 @Resolver()
 export class StoreResolver {
   @Query(() => [Store])
-  async stores(@Ctx() { em }: ContextType) {
+  async stores(@Ctx() { em }: IContext) {
     return await em.find(Store, {}, ["products"]);
   }
 
   @Query(() => Store, { nullable: true })
-  async store(@Arg("data") data: FindSotreDto, @Ctx() { em }: ContextType) {
+  async store(@Arg("data") data: FindSotreDto, @Ctx() { em }: IContext) {
     const { id, title } = data;
     return await em.findOne(
       Store,
@@ -52,7 +52,7 @@ export class StoreResolver {
 
   @Mutation(() => Store)
   async createStore(
-    @Ctx() { em }: ContextType,
+    @Ctx() { em }: IContext,
     @Arg("data") data: CreateSotreDto
   ) {
     const store = em.create(Store, data);

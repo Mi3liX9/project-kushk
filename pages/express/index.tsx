@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Input from "app/components/shared/forms/input";
+import Input from "app/components/elements/input";
 import Product from "app/components/templates/stores/product-preview";
 
 type AliExpressProduct = {
