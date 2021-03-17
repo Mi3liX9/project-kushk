@@ -1,27 +1,29 @@
-import { GetStaticProps } from "next";
 import { useEffect, useState } from "react";
 import Input from "src/components/shared/forms/input";
+import Product from "src/components/stores/product-preview";
+
+type AliExpressProduct = {
+  url: string;
+  informaion: string;
+};
 
 const Express = () => {
-  const [url, setUrl] = useState("");
-  const [data, setData] = useState({});
+  const [url, setUrl] = useState<string>("");
+  const [info, setInfo] = useState<string>("");
 
-  useEffect(() => {
-    getData();
-  }, [url]);
+  const [products, setProducts] = useState<AliExpressProduct[]>([]);
 
-  const getData = async () => {
-    try {
-      const test = await fetch(url);
-      setData(await test.json());
-      console.log("hi");
-    } catch {
-      setData({});
+  const clickHandler = () => {
+    if (url && info) {
+      setProducts([...products, { informaion: info, url }]);
+      setUrl("");
+      setInfo("");
     }
   };
 
   return (
-    <div>
+    <div tw="space-y-2">
+      قم باضافة معلومات طلبك هنا:
       <Input
         type="text"
         name="url"
@@ -30,16 +32,34 @@ const Express = () => {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-
-      <pre>{JSON.stringify({ url, data }, null, 2)}</pre>
+      <Input
+        type="textarea"
+        name="information"
+        label="معلومات الطلب"
+        placeholder="اكتب معلومات الطلب مثل اللون والشكل إلخ..."
+        value={info}
+        onChange={(e) => setInfo(e.target.value)}
+      />
+      <button
+        tw="bg-blue-500 opacity-90 hover:opacity-100 w-full"
+        onClick={clickHandler}
+      >
+        اضافة إلى السلة
+      </button>
+      <div tw="m-10" />
+      {products.map(({ url, informaion: info }) => (
+        <>
+          <Product id={url} title={url} descreption={info} price="0" />
+          <div tw="flex gap-1">
+            <button tw="bg-blue-600 opacity-90 hover:opacity-100">
+              تعديل{" "}
+            </button>
+            <button tw="bg-red-600 opacity-90 hover:opacity-100">ازالة</button>
+          </div>
+        </>
+      ))}
     </div>
   );
 };
 
 export default Express;
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
-};

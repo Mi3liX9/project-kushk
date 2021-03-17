@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
   input[type='radio'],
   textarea
   {
-      ${tw`border border-transparent focus:ring-blue-500	p-2 select-none rounded-xl outline-none dark:bg-gray-900 resize-none`}
+      ${tw`border border-transparent focus:ring-blue-500 p-2 select-none rounded-sm outline-none dark:bg-gray-900 resize-none`}
     }
 
   /* select
@@ -56,7 +56,7 @@ select[multiple] */
 
 
   button {
-    ${tw`p-2 rounded-md text-gray-200 disabled:cursor-auto`}
+    ${tw`p-2 rounded-sm text-gray-100 disabled:cursor-auto`}
 }
 
   * {

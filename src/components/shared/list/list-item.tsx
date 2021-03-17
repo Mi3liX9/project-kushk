@@ -17,7 +17,7 @@ const ListItem: React.FC<Props> = ({ children, icon }) => {
 
 export default ListItem;
 
-const Item = tw.li`flex bg-white dark:bg-gray-900 hover:bg-blue-300 dark:hover:bg-blue-700
+const Item = tw.li`flex bg-white dark:bg-gray-900 opacity-80 hover:opacity-100
    select-none cursor-pointer items-center p-3 gap-5 rounded-2xl`;
 
 const Children = tw.div`flex gap-x-4 gap-y-5 flex-wrap`;
