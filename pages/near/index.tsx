@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
-import StoresPreivew from "app/components/near/stores-preview";
+import StoresPreivew from "app/components/templates/near/stores-preview";
 import SearchBar from "app/components/shared/searchbar/search-bar";
 import { useAuth } from "app/hooks/authHook";
 import { useStores } from "app/hooks/useStores";

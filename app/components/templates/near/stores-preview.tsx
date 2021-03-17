@@ -1,7 +1,7 @@
 import React from "react";
 import { Store } from "app/features/stores/store";
 import tw from "twin.macro";
-import List from "../shared/list/list";
+import List from "../../shared/list/list";
 import StorePreview from "./store-preview";
 
 interface Props {

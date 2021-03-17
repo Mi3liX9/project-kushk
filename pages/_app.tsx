@@ -1,7 +1,7 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import Head from "next/head";
 import styled from "styled-components";
-import Header from "app/components/app/header/header";
+import Header from "app/components/layouts/header/header";
 import { Site } from "site";
 import React from "react";
 import { ApolloProvider } from "@apollo/client";

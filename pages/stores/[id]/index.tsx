@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import ProductsPreivew from "app/components/stores/products-preview";
+import ProductsPreivew from "app/components/templates/stores/products-preview";
 import { Store } from "app/features/stores/store";
 import { useAuth } from "app/hooks/authHook";
 import { initializeApollo } from "app/utils/graphql/apollo-client";

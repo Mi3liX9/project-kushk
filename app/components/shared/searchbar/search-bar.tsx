@@ -1,13 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { css } from "twin.macro";
-import Categories from "../categories/categories";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  // value: string;
-  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  // categories?: { title: string; key: string }[];
-}
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const SearchBar: React.FC<Props> = ({ ...props }) => {
   return (
@@ -19,7 +14,6 @@ const SearchBar: React.FC<Props> = ({ ...props }) => {
         placeholder="شريط البحث"
         {...props}
       />
-      {/* {categories ? <Categories categories={categories} /> : null} */}
     </SearchContainer>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import tw, { styled } from "twin.macro";
-import ListItem from "../shared/list/list-item";
+import ListItem from "../../shared/list/list-item";
 
 export interface ProductProps {
   id: string;

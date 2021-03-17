@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Input from "app/components/shared/forms/input";
-import Product from "app/components/stores/product-preview";
+import Product from "app/components/templates/stores/product-preview";
 
 type AliExpressProduct = {
   url: string;

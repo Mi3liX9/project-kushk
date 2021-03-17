@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import ListItem from "../shared/list/list-item";
+import ListItem from "../../shared/list/list-item";
 import { Store } from "app/features/stores/store";
 import { styled } from "twin.macro";
 
