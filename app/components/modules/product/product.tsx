@@ -6,7 +6,7 @@ export interface Props {
 }
 
 const Product: React.FC<Props> = (product) => (
-  <div tw="rounded-md hover:ring ring-blue-500 bg-white shadow-sm dark:bg-gray-900 p-1 space-y-2 select-none">
+  <div tw="rounded-md hover:ring ring-blue-500 bg-white shadow-sm dark:bg-gray-900 p-1 space-y-2 select-none h-full">
     <img src={product.mainImage} tw="rounded-md" />
     <div tw="px-2 space-y-2">
       <p tw="font-medium">{product.title}</p>
