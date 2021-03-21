@@ -1,55 +1,11 @@
-import { gql, useQuery } from "@apollo/client";
+import React from "react";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import ProductsPreivew from "app/components/templates/stores/products-preview";
-import { Store } from "app/features/stores/store";
-import { useAuth } from "app/hooks/authHook";
+import { gql, useQuery } from "@apollo/client";
 import { initializeApollo } from "app/utils/graphql/apollo-client";
-import styled from "styled-components";
-
-interface Props extends InferGetStaticPropsType<GetStaticProps> {}
-
-const StorePage: React.FC<Props> = ({ id }) => {
-  const { user } = useAuth();
-  const { loading, error, data, refetch } = useQuery<{ store: Store }>(
-    STORE_QUERY,
-    {
-      variables: { id },
-    }
-  );
-
-  useEffect(() => {
-    (async () => await refetch())();
-  }, []);
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-  if (loading) {
-    return <div>loading....</div>;
-  }
-  return (
-    <Container>
-      <StoreInfo>
-        <StoreImg
-          src={data?.store.icon ?? "https://d.top4top.io/p_185160wxc1.jpg"}
-        />
-        <h1>{data?.store.title}</h1>
-        <p>{data?.store.description}</p>
-      </StoreInfo>
-      <H2>قائمة المنتجات</H2>
-      <ProductsPreivew products={data?.store.products as any} />
-      {user ? (
-        <Link href={id + "/dashboard"}>
-          <button>اضافة متجر</button>
-        </Link>
-      ) : null}
-    </Container>
-  );
-};
-
-export default StorePage;
+import { useAuth } from "app/hooks/authHook";
+import { Store } from "app/features/stores/store";
+import { Product } from "app/features/products/product";
+import StoreTemplate from "app/components/templates/store";
 
 const STORES_QUERY = gql`
   query Stores {
@@ -69,6 +25,7 @@ const STORE_QUERY = gql`
       products {
         title
         images
+        mainImage
         description
       }
     }
@@ -98,36 +55,25 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     query: STORES_QUERY,
   });
   const paths = data.stores.map(({ id }) => ({ params: { id } }));
+
   return {
     paths,
     fallback: true,
   };
 };
 
-const StoreInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: var(--background-secondary);
-  border-radius: 2px;
-  padding: 15px;
-  /* margin: 10px; */
-  text-align: center;
-`;
+interface Props extends InferGetStaticPropsType<GetStaticProps> {}
 
-const StoreImg = styled.img`
-  width: 150px;
-  border-radius: 50%;
-`;
+const StorePage: React.FC<Props> = ({ id }) => {
+  const { user } = useAuth();
+  const { loading, error, data, refetch } = useQuery<{ store: Store }>(
+    STORE_QUERY,
+    { variables: { id } }
+  );
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
+  if (loading) return <div>lodaing...</div>;
+  if (error) return <div>error</div>;
+  return <StoreTemplate store={data?.store!} />;
+};
 
-const H2 = styled.h2`
-  margin: 0;
-  padding: 0;
-`;
+export default StorePage;

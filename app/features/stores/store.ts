@@ -8,9 +8,9 @@ import {
 } from "@mikro-orm/core";
 import { ObjectId } from "@mikro-orm/mongodb";
 import { Field, ID, ObjectType } from "type-graphql";
-import { Category } from "../categories/category";
 import { Product } from "../products/product";
 
+type ProductType = Collection<Product, unknown> | Product[];
 @Entity()
 @ObjectType()
 export class Store {
@@ -39,8 +39,5 @@ export class Store {
 
   @Field(() => [Product])
   @OneToMany(() => Product, (p) => p.store)
-  products = new Collection<Product>(this);
-
-  // @Field(() => [Category])
-  // categories: Category[];
+  products: ProductType = new Collection<Product>(this);
 }

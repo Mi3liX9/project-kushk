@@ -1,5 +1,4 @@
 import {
-  Collection,
   Entity,
   ManyToOne,
   PrimaryKey,
@@ -31,6 +30,11 @@ export class Product {
   @Property()
   @Field(() => [String])
   images: string[];
+
+  @Field(() => String)
+  get mainImage() {
+    return this.images[0];
+  }
 
   @Property()
   @Field(() => Float)
