@@ -56,7 +56,7 @@ select[multiple] */
 
 
   button {
-    ${tw`p-2 rounded-sm text-gray-100 disabled:cursor-auto`}
+    ${tw`p-2 rounded-sm text-black dark:text-gray-100 disabled:cursor-auto`}
 }
 
   * {

@@ -1,8 +1,8 @@
-import { useEffect, useState, createContext, useContext } from "react";
+import { useEffect, useState } from "react";
 
 type Mode = "light" | "dark";
 
-export const useTheme = () => {
+export const useTheme = (): [string, () => void] => {
   const [theme, setTheme] = useState("light");
 
   const setMode = (mode: Mode) => {
