@@ -11,12 +11,12 @@ const StoreTemplate: React.FC<Props> = ({ store }) => {
   const { products } = store;
   return (
     <div tw="space-y-3">
-      <div tw="bg-gray-900 p-2 box-content rounded-md select-none space-y-2">
-        <div tw="flex h-12 space-x-3 gap-3 items-center">
-          <img src={store.icon} tw="rounded-md h-full" />
+      <div tw="bg-gray-900 flex p-2 rounded-md select-none gap-x-3 space-x-3 h-24 items-center">
+        <img src={store.icon} tw="rounded-md h-full" />
+        <div tw="flex flex-col space-x-3 gap-3">
           <p tw="font-bold text-3xl">{store.title}</p>
+          <p>{store.description}</p>
         </div>
-        <p>{store.description}</p>
       </div>
       <h2 tw="text-2xl font-medium">قائمة المنتجات</h2>
       <Products products={products as Product[]} />
